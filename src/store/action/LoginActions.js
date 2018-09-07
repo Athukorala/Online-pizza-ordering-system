@@ -8,10 +8,27 @@ export const loginHandler = (data) => {
     }
 };
 
-export const registerHandler = (data) => {
+export const registerPersonDetailsHandler = (data) => {
 
     return {
-        type: actionTypes.REGISTER_HANDLER,
+        type: actionTypes.REGISTER_PERSONDETAILS_HANDLER,
+        value: data
+    }
+};
+
+export const registerSocialMediaHandler = (data) => {
+
+    return {
+        type: actionTypes.REGISTER_SOCIALMEDIA_HANDLER,
+        value: data
+    }
+};
+
+
+export const registerPasswordHandler = (data) => {
+
+    return {
+        type: actionTypes.REGISTER_PASSWORDDETAILS_HANDLER,
         value: data
     }
 };

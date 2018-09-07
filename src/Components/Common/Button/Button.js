@@ -18,7 +18,8 @@ class App extends Component {
                             color: this.props.color ? this.props.color : 'white',
                             borderColor: this.props.backgroundColor ? '#abebab' : 'white',
                             outline: 'none',
-                            marginBottom: '5%',
+                            marginBottom: this.props.marginBottom?this.props.marginBottom:'0%',
+                            marginTop:this.props.marginTop,
                             boxShadow:'none',
                             border:'none',
                             ":hover": {

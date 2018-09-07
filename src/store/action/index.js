@@ -2,7 +2,9 @@
 
 export  {
     loginHandler,
-    registerHandler
+    registerPersonDetailsHandler,
+    registerSocialMediaHandler,
+    registerPasswordHandler
 
 } from './LoginActions'
 

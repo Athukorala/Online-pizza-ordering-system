@@ -2,8 +2,11 @@ import React, {Component} from 'react';
 import Input from "../../../../Components/Common/TextField/Input";
 import ImageUpload from "../../../../Components/Common/ImageUpload/ImagUpload";
 import {DatePicker} from 'antd';
-import password from "../../../../Content/Images/password.png";
 import superClass from "../../../../Content/Outline/style.css";
+import Button from "../../../../Components/Common/Button/Button";
+import * as actionCreator from "../../../../store/action";
+import connect from "react-redux/es/connect/connect";
+import Radium from "radium";
 
 
 const popup = {
@@ -21,7 +24,8 @@ const dark = {
 class App extends Component {
 
     state = {
-        date: ""
+        date: "",
+
     };
 
 
@@ -31,28 +35,49 @@ class App extends Component {
         })
     };
 
+    nextPasswordHandler = () => {
+        this.props.regPasswordHandlerHandler(true);
+    };
+
     render() {
         return (
             <div>
                 <center><h1 style={h1Style}>REGISTRATION</h1></center>
                 <div className={superClass.mainDiv}>
                     <h5 style={h5Style}>Person details</h5>
-                    <div className="row" style={{margin: '0%', borderBottom: '1px solid lightgray'}}>
+                    <div className="row" style={{margin: '0%'}}>
+
+                        {/*image viewer ---*/}
                         <div className="col-sm-6">
-                            <div className="form-group">
+                            <label style={{marginLeft: '32%'}} htmlFor="userName">Choose your image</label>
+                            <ImageUpload white={true}/>
+                            <div className="form-group" style={{marginTop: '9%'}}>
+
                                 <label htmlFor="userName">User name</label>
                                 <Input width="100%"
                                        onChange={(event) => this.nameInput(event.target.value)}
                                        id="userName"
                                        placeholder="User name"/>
                             </div>
-
                             <div className="form-group">
                                 <label htmlFor="address">User address</label>
                                 <textarea className="form-control" style={{boxShadow: 'none', border: 'none'}}
                                           placeholder="User address" id="address" rows="3">
                             </textarea>
                             </div>
+                        </div>
+
+                        {/*another fields ---*/}
+                        <div className="col-sm-6">
+                            <div className="form-group">
+                                <label htmlFor="userName">Select your Birth day</label>
+                                <DatePicker popupStyle={popup} onChange={this.datePicker} style={dark}/>
+                                <Input width="100%"
+                                       value={this.state.date}
+                                       id="userName"
+                                       placeholder="Select birthday" marginTop='-10%'/>
+                            </div>
+
 
                             <div className="form-group">
                                 <label htmlFor="userName">Select country</label>
@@ -69,62 +94,16 @@ class App extends Component {
                                        id="userName"
                                        placeholder="Mobile Number"/>
                             </div>
-                        </div>
 
-                        <div className="col-sm-6">
-                            <label style={{marginLeft: '32%'}} htmlFor="userName">Choose your image</label>
-                            <ImageUpload white={true}/>
-                            <div className="form-group" style={{marginTop: '9%'}}>
-                                <label htmlFor="userName">Select your Birth day</label>
-                                <DatePicker popupStyle={popup} onChange={this.datePicker} style={dark}/>
-                                <Input width="100%"
-                                       value={this.state.date}
-                                       id="userName"
-                                       placeholder="Select birthday" marginTop='-10%'/>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h5 style={h5Style}>Password details</h5>
-                    <div className="row" style={{padding: '3%'}}>
-                        <div className="col-sm-6">
-                            <img style={{
-                                width: '50%',
-                                marginLeft: '10%',
-                                padding: '10%',
-                                borderRadius: '100px',
-                                border: '1px solid lightgray'
-                            }} src={password} alt="password"/>
-
-                        </div>
-                        <div className="col-sm-6">
-                            <div className="form-group">
-                                <label htmlFor="userName">User Email</label>
-                                <Input width="100%"
-                                       placeholder="User email"/>
-                            </div>
-
-                            <div className="form-group">
-                                <label htmlFor="address">Enter password</label>
-                                <Input width="100%"
-                                       onChange={(event) => this.nameInput(event.target.value)}
-                                       type="password"
-                                       placeholder="Enter password"/>
-                            </div>
-
-                            <div className="form-group">
-                                <label htmlFor="address">Re-Enter password</label>
-                                <Input width="100%"
-                                       onChange={(event) => this.nameInput(event.target.value)}
-                                       type="password"
-                                       placeholder="Re-Enter password"/>
-                            </div>
+                            <Button marginTop="35%" onClick={this.nextPasswordHandler}>NEXT</Button>
 
 
                         </div>
 
 
                     </div>
+
+
                 </div>
             </div>
         );
@@ -140,9 +119,22 @@ const h1Style = {
 };
 
 const h5Style = {
-    paddingTop: '3%',
+    paddingTop: '0%',
     marginLeft: '3%',
     width: '50%',
 };
 
-export default App;
+const mapStateToProps = (state) => {
+
+
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loginHandler: (data) => dispatch(actionCreator.loginHandler(data)),
+        regPasswordHandlerHandler: (data) => dispatch(actionCreator.registerPasswordHandler(data)),
+    }
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Radium(App));

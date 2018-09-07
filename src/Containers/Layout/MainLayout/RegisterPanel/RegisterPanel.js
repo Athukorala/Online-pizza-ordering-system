@@ -130,7 +130,7 @@ class App extends Component {
                                         </div>
                                     </div>
                                     <div className="col-sm-4">
-                                        <Button href="#home"  onClick={()=>this.props.regHandler(true)}>REGISTER</Button>
+                                        <Button href="#home"  onClick={()=>this.props.regPersonDetailsHandler(true)}>REGISTER</Button>
                                     </div>
                                 </div>
 
@@ -157,7 +157,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         loginHandler: (data) => dispatch(actionCreator.loginHandler(data)),
-        regHandler: (data) => dispatch(actionCreator.registerHandler(data)),
+        regPersonDetailsHandler: (data) => dispatch(actionCreator.registerPersonDetailsHandler(data)),
     }
 };
 

@@ -126,7 +126,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         loginHandler: (data) => dispatch(actionCreator.loginHandler(data)),
-        regHandler: (data) => dispatch(actionCreator.registerHandler(data)),
+        regHandler: (data) => dispatch(actionCreator.registerPersonDetailsHandler(data)),
     }
 };
 
