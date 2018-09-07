@@ -6,6 +6,7 @@ import pic4 from '../../../Content/Images/4.jpg';
 import pic5 from '../../../Content/Images/8.jpg';
 import pic6 from '../../../Content/Images/7.jpg';
 import RegisterPanel from "./RegisterPanel/RegisterPanel";
+import ScrollableAnchor from "react-scrollable-anchor";
 
 const imgStyle={
     height:'600px'
@@ -16,7 +17,7 @@ class App extends Component {
     render() {
         return (
             <div>
-
+                <ScrollableAnchor id={'home'}>
                 <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
                     <ol className="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active">
@@ -81,15 +82,18 @@ class App extends Component {
                     </div>
                     <a style={{outline: 'none', border: 'none'}} className="carousel-control-prev"
                        href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span className="carousel-control-prev-icon" aria-hidden="true">
+                        </span>
                         <span className="sr-only">Previous</span>
                     </a>
                     <a style={{outline: 'none', border: 'none'}} className="carousel-control-next"
                        href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span className="carousel-control-next-icon" aria-hidden="true">
+                        </span>
                         <span className="sr-only">Next</span>
                     </a>
                 </div>
+                </ScrollableAnchor>
                 {/*---- register process ---*/}
 
                 <RegisterPanel/>

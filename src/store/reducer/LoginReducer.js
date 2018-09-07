@@ -12,7 +12,7 @@ const reducer=(state=initialState,action)=>{
         case actionTypes.LOGIN_HANDLER:
             return {
                 ...state,
-                login:true,
+                login:action.value,
                 register:false
             };
 
@@ -20,7 +20,7 @@ const reducer=(state=initialState,action)=>{
             return {
                 ...state,
                 login:false,
-                register:true
+                register:action.value
             };
 
         default:

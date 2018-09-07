@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import Radium from 'radium';
 import Button from "../../../../Components/Common/Button/Button";
 import ScrollableAnchor, {removeHash} from 'react-scrollable-anchor';
+import * as actionCreator from "../../../../store/action";
+import connect from "react-redux/es/connect/connect";
 
 const circleStyle = {
     height: '150px',
@@ -58,38 +60,39 @@ class App extends Component {
                         </div>
                     </section>
 
-                    <section style={{
-                        padding: '70px 0',
-                        overflow: 'hidden',
+                    <ScrollableAnchor id={'howitworks'}>
+                        <section style={{
+                            padding: '70px 0',
+                            overflow: 'hidden',
+                        }}>
+                            <center><h1 style={h1Style}>HOW IT WORKS</h1></center>
+                            <div className="row" style={{margin: '0'}}>
 
-                    }}>
-                        <center><h1 style={h1Style}>HOW IT WORKS</h1></center>
-                        <div className="row" style={{margin: '0'}}>
+                                <div className="col-sm-3" style={colStyle}>
+                                    <h5 style={h5Style}>STEP 01</h5>
+                                    <h1 key="1" style={circleStyle}>CREATE ORDER</h1>
 
-                            <div className="col-sm-3" style={colStyle}>
-                                <h5 style={h5Style}>STEP 01</h5>
-                                <h1 key="1" style={circleStyle}>CREATE ORDER</h1>
+                                </div>
 
+                                <div className="col-sm-3" style={colStyle}>
+                                    <h5 style={h5Style}>STEP 02</h5>
+                                    <h1 key="2" style={circleStyle}>GET DELIVERED</h1>
+
+                                </div>
+
+                                <div className="col-sm-3" style={colStyle}>
+                                    <h5 style={h5Style}>STEP 03</h5>
+                                    <h1 key="3" style={circleStyle}>CREATE ORDER</h1>
+
+                                </div>
+                                <div className="col-sm-3" style={colStyle}>
+                                    <h5 style={h5Style}>STEP 04</h5>
+                                    <h1 key="4" style={circleStyle}>CREATE ORDER</h1>
+
+                                </div>
                             </div>
-
-                            <div className="col-sm-3" style={colStyle}>
-                                <h5 style={h5Style}>STEP 02</h5>
-                                <h1 key="2" style={circleStyle}>GET DELIVERED</h1>
-
-                            </div>
-
-                            <div className="col-sm-3" style={colStyle}>
-                                <h5 style={h5Style}>STEP 03</h5>
-                                <h1 key="3" style={circleStyle}>CREATE ORDER</h1>
-
-                            </div>
-                            <div className="col-sm-3" style={colStyle}>
-                                <h5 style={h5Style}>STEP 04</h5>
-                                <h1 key="4" style={circleStyle}>CREATE ORDER</h1>
-
-                            </div>
-                        </div>
-                    </section>
+                        </section>
+                    </ScrollableAnchor>
                 </div>
 
                 <ScrollableAnchor id={'reg'}>
@@ -127,7 +130,7 @@ class App extends Component {
                                         </div>
                                     </div>
                                     <div className="col-sm-4">
-                                        <Button>REGISTER</Button>
+                                        <Button href="#home"  onClick={()=>this.props.regHandler(true)}>REGISTER</Button>
                                     </div>
                                 </div>
 
@@ -139,14 +142,25 @@ class App extends Component {
                     </section>
                 </ScrollableAnchor>
 
-
             </div>
-
-
         );
     }
 }
 
 const h1Style = {marginTop: '3%', marginBottom: '5%', width: '50%', borderBottom: '5px solid #FCD1D9'};
 
-export default Radium(App);
+const mapStateToProps = (state) => {
+
+
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loginHandler: (data) => dispatch(actionCreator.loginHandler(data)),
+        regHandler: (data) => dispatch(actionCreator.registerHandler(data)),
+    }
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Radium(App));
+

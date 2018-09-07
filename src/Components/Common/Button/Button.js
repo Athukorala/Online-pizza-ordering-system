@@ -5,9 +5,9 @@ class App extends Component {
     render() {
         return (
             <div>
-                <button type={this.props.btnType} className="btn btn-primary" onClick={this.props.onClick}
+                <a type={this.props.btnType} className="btn btn-primary" onClick={this.props.onClick}
                         data-toggle={this.props.toggle} data-target={this.props.target}
-
+                        href={this.props.href}
                         style={{
                             width: this.props.width ? this.props.width : '100%',
                             // borderRadius: '25px',
@@ -25,7 +25,7 @@ class App extends Component {
                                 background: '#FFEFC9',color:'black',border:'1px solid #F16A84'
                             }
 
-                        }} disabled={this.props.disabled}>{this.props.children}</button>
+                        }} >{this.props.children}</a>
             </div>
 
         )

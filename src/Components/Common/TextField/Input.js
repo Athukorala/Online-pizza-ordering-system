@@ -12,13 +12,13 @@ class App extends Component {
                            color: this.props.color ? this.props.color: 'black',
                            width: this.props.width ? this.props.width : '50%',
                            // height: this.props.height ? this.props.height : '38px',
-
-
+                           marginTop:this.props.marginTop?this.props.marginTop:'0%',
                            height: this.props.height ? this.props.height : '34px',
                            border:'1px solid white',
                            // borderRadius: '20px',
                            boxShadow:'none',
-                           background:this.props.background?this.props.background:'linear-gradient(to left, antiquewhite,white)'
+                           //background:this.props.background?this.props.background:'linear-gradient(to left, antiquewhite,white)'
+                            background:this.props.background?this.props.background:'white'
                        }}
                        disabled={this.props.disabled}
                        onChange={this.props.onChange}

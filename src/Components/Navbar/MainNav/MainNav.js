@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import classes from './Navbar.css';
 import Logo from '../../../Content/Images/logo.png';
+import connect from "react-redux/es/connect/connect";
+import * as actionCreator from '../../../store/action/index';
 
 class App extends Component {
     state = {
@@ -13,13 +15,17 @@ class App extends Component {
 
     };
 
+    login = () => {
+        this.props.loginHandler(true);
+    };
+
     render() {
         let customerNumbers = this.state.customerDetails.length;
         let itemsNumbers = this.state.itemDetails.length;
 
         return (
             <div className={classes.Nav} style={{
-                 width: '100%', zIndex: '10', borderBottom: '1px solid  rgb(255, 237, 188',
+                 width: '100%', zIndex: '50', borderBottom: '1px solid  rgb(255, 237, 188',
                 position: 'fixed'
             }}>
                 <nav className="navbar navbar-expand-lg navbar-light">
@@ -50,16 +56,24 @@ class App extends Component {
                         <form className="form-inline my-2 my-lg-0">
                             <ul className="navbar-nav" style={{float: 'right'}}>
 
+
+
                                 <li className="nav-item" style={{float: 'right'}}>
-                                    <a onClick={this.cus} className="nav-link js-scroll-trigger" style={astyle}>
-                                        &nbsp;&nbsp;&nbsp;LOGIN&nbsp;</a>
+                                    <a href="#howitworks" onClick={this.item} className="nav-link js-scroll-trigger"  style={astyle}>
+                                        &nbsp;&nbsp;&nbsp;HOW IT WORKS&nbsp;</a>
+                                </li>
+                                &nbsp;
+
+                                <li className="nav-item" style={{float: 'right'}}>
+                                    <a href="#reg" onClick={this.item} className="nav-link js-scroll-trigger"  style={astyle}>
+                                        &nbsp;&nbsp;&nbsp;REGISTER&nbsp;</a>
                                 </li>
                                 &nbsp;
                                 <li className="nav-item" style={{float: 'right'}}>
-                                    <a href="#reg" onClick={this.item} className="nav-link js-scroll-trigger"  style={astyle}>
-
-                                        &nbsp;&nbsp;&nbsp;REGISTER&nbsp;</a>
+                                    <a href="#home" onClick={this.login} className="nav-link js-scroll-trigger" style={astyle}>
+                                        &nbsp;&nbsp;&nbsp;LOGIN&nbsp;</a>
                                 </li>
+
 
                                 <li className="nav-item" style={{float: 'right'}}>
                                     {/*<i className="nav-link js-scroll-trigger"*/}
@@ -99,4 +113,22 @@ const astyle = {
 };
 
 
-export default App;
+const mapStateToProps = (state) => {
+    return {
+        isLogin: state.isLoginReducer.login,
+        isReg: state.isLoginReducer.register,
+        // loading changes
+        result: state.isLoad.start
+    }
+};
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loginHandler: (data) => dispatch(actionCreator.loginHandler(data)),
+        regHandler: (data) => dispatch(actionCreator.registerHandler(data)),
+    }
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps) (App);
