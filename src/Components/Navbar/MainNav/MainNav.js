@@ -56,7 +56,7 @@ class App extends Component {
                                 </li>
                                 &nbsp;
                                 <li className="nav-item" style={{float: 'right'}}>
-                                    <a onClick={this.item} className="nav-link js-scroll-trigger"  style={astyle}>
+                                    <a href="#reg" onClick={this.item} className="nav-link js-scroll-trigger"  style={astyle}>
 
                                         &nbsp;&nbsp;&nbsp;REGISTER&nbsp;</a>
                                 </li>

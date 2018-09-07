@@ -44,6 +44,8 @@
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.0.3",
     "webpack-command": "^0.2.0",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-dev-server": "^3.1.4",
+    "radium": "^0.24.1",
+    "react-scrollable-anchor": "^0.6.1"
   }
 }
