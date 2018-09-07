@@ -1,0 +1,21 @@
+.ftrDiv{
+    /*height: 80px;*/
+    position: relative;
+    left: 0;
+    margin-bottom: 0;
+    bottom: 0;
+    width: 100%;
+
+    text-align: center;
+    z-index: 100;
+    /*background-color: #212121;*/
+    background: linear-gradient(to right, #ffedbc, #ed4264)!important;
+    /*margin-top:0;*/
+    color: #BDBDBD;
+}
+
+.footerInput{
+    border:#BDBDBD;
+
+}
+/*#e3f2fd*/
