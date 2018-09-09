@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,59 +19,61 @@ public class UserServiceImpl implements UserService {
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
-    public void saveCustomer(UserDTO dto) {
-
-        repository.save(new User(dto.getId(), dto.getName(), dto.getAddress(), dto.getImage()));
+    public void saveUser(UserDTO dto) {
+        System.out.println("service");
+        System.out.println(dto);
+        repository.save(new User(dto.getName(),dto.getAddress(),dto.getEmail(),dto.getBday(),dto.getCountry(),dto.getNumber(),dto.getPassword(),dto.getInstagram(),dto.getFb(),dto.getTwitter()));
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
-    public void updateCustomer(int customerId, UserDTO dto) {
-        if (!String.valueOf(dto.getId()).equalsIgnoreCase(String.valueOf(customerId))) {
-            throw new RuntimeException("User ID mismatched");
-        }
-        if (repository.existsById(customerId)) {
-            repository.save(new User(dto.getId(), dto.getName(), dto.getAddress() ,dto.getImage()));
+    public void updateUser(int UserId, UserDTO dto) {
+
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public void deleteUser(int UserId) {
+
+    }
+
+    @Override
+    public UserDTO findUser(int UserId) {
+
+        User user=repository.findById(UserId).get();
+        return new UserDTO(user.getId(),user.getName(),user.getAddress(),user.getEmail(),user.getBday(),user.getCountry(),user.getNumber(),user.getPassword(),user.getInstagram(),user.getFb(),user.getTwitter());
+    }
+
+    @Override
+    public List<UserDTO> findAllUsers() {
+
+        return null;
+    }
+
+    @Override
+    public List<UserDTO> findUsersLike(String name) {
+
+        return null;
+    }
+
+    @Override
+    public long getUsersCount() {
+
+        return 0;
+    }
+
+    @Override
+    public UserDTO checkAccount(String email, String password) {
+        User user= repository.checkAccount(email,password);
+        System.out.println("okk");
+        System.out.println(user);
+        if(user != null){
+            return new UserDTO(user.getId(),user.getName(),user.getAddress(),user.getEmail(),user.getBday(),user.getCountry(),user.getNumber(),user.getPassword(),user.getInstagram(),user.getFb(),user.getTwitter());
         }else{
-            throw new RuntimeException("User doesn't exist");
+            return null;
         }
-    }
-
-    @Transactional(propagation = Propagation.REQUIRED)
-    @Override
-    public void deleteCustomer(int customerId) {
-        repository.deleteById(customerId);
 
     }
 
-    @Override
-    public UserDTO findCustomer(int customerId) {
-        System.out.println(customerId);
-        User customer = repository.findById(customerId).get();
 
-        return new UserDTO(customer.getId(), customer.getName(), customer.getAddress(),customer.getImage());
-    }
-
-    @Override
-    public List<UserDTO> findAllCustomers() {
-        List<User> allCustomers = repository.findAll();
-        System.out.println(allCustomers);
-        List<UserDTO> dtos = new ArrayList<>();
-        allCustomers.forEach(c -> dtos.add(new UserDTO(c.getId(), c.getName(), c.getAddress(),c.getImage())));
-        return dtos;
-    }
-
-    @Override
-    public List<UserDTO> findCustomersLike(String name) {
-        List<User> allCustomers =  repository.letsFindSomeCustomers(name + "%");
-        List<UserDTO> dtos = new ArrayList<>();
-        allCustomers.forEach(c -> dtos.add(new UserDTO(c.getId(), c.getName(), c.getAddress())));
-        return dtos;
-    }
-
-    @Override
-    public long getCustomersCount() {
-
-        return  repository.count();
-    }
 }

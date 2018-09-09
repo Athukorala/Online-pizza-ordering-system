@@ -4,6 +4,7 @@ import * as actionCreator from "../../../store/action";
 import Radium from "radium";
 import superClass from "../../../Content/Outline/style.css";
 import Logo from '../../../Content/Images/logo.png';
+import sweet from "sweetalert";
 
 const antModalStyle = {opacity: '1.2'};
 
@@ -28,18 +29,46 @@ class App extends Component {
 
     setModalVisible = () => {
         this.closeAll();
-        this.props.loginHandler(false);
-        this.props.regHandler(false);
-    };
-    leave = () => {
-        // document.getElementById('closeBtn').style.backgroundColor = "lightgray";
-    };
-
-    enter = () => {
-        // document.getElementById('closeBtn').style.backgroundColor = "#f95757";
+        // this.props.loginHandler(false);
+        // this.props.regHandler(false);
     };
 
     closeAll = () => {
+
+        let name='';
+        if(this.props.head === 'Register'){
+            name="Do you cancel registration?"
+        }else if(this.props.head === 'Login'){
+            name="Do you cancel login?"
+        }
+        sweet(name, {
+            buttons: {
+                cancel: "NO",
+                catch: {
+                    text: "YES",
+                    value: "catch",
+                },
+            },
+        })
+            .then((value) => {
+                switch (value) {
+                    case "catch":
+                        this.clearRedux();
+                        break;
+
+                    case "normal":
+                        this.props.loginHandler(true);
+                        break;
+
+                    default:
+                        break;
+                }
+            });
+    };
+
+    clearRedux = () => {
+        this.props.regHandler(false);
+
         this.props.regNameHandler("");
         this.props.regAddressHandler("");
         this.props.regBdayHandler("");
@@ -51,7 +80,7 @@ class App extends Component {
         this.props.regTwitterHandler("");
         this.props.regEmailHandler("");
         this.props.imageHandler([]);
-    }
+    };
 
     render() {
 

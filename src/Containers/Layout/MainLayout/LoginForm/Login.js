@@ -6,13 +6,63 @@ import Button from "../../../../Components/Common/Button/Button";
 import * as actionCreator from "../../../../store/action";
 import connect from "react-redux/es/connect/connect";
 import SmartTextfield from "../../../../Components/Common/TextField/SmartTextfield/SmartTextfield";
+import userAxios from "../../../../axios/axios-user";
+import sweet from "sweetalert";
 
 class App extends Component {
 
+    state={
+        email:'',
+        password:''
+    };
 
     checkPassword = () => {
-        this.props.loginHandler(false);
+        if(this.state.email === '' || this.state.password === ''){
+            sweet({
+                text: 'Please enter email and password..',
+                icon: "warning",
+                button: "Okay!",
+            })
+        }else{
+            this.backendData();
+        }
     };
+
+    backendData = () => {
+        const obj={
+            "email":this.state.email,
+            "password":this.state.password
+        };
+
+        // userAxios.get(`users?action1=`+this.state.email+`&action2=`+this.state.password)
+        userAxios.post(`users`,obj)
+            .then(response => {
+
+                if (response.status === 200) {
+                    if(response.data.id){
+                        this.props.loginHandler(false);
+                        sessionStorage.setItem("value_email", this.state.email);
+                        sessionStorage.setItem("value_id", response.data.id);
+                    }else{
+                        sweet({
+                            text: "Try again! Incorrect password or email",
+                            icon: "warning",
+                            button: "Okay!",
+                        });
+                    }
+                }
+            })
+            .catch(error => {
+                console.log(error)
+                sweet({
+                    text: "Failed!",
+                    icon: "warning",
+                    button: "Okay!",
+                });
+            });
+
+        // this.props.loginHandler(false);
+    }
 
     render() {
         return (
@@ -31,12 +81,17 @@ class App extends Component {
                         <div className="col-sm-6">
                             <div className="form-group">
                                 <label htmlFor="userName">User Email</label>
-                                <SmartTextfield set="@" placeholder="Enter your email"/>
+                                <SmartTextfield
+                                    onChange={(event) => this.setState({email:event.target.value})}
+                                    set="@" placeholder="Enter your email"/>
 
                             </div>
                             <div className="form-group">
                                 <label htmlFor="userName">User Password</label>
-                                <SmartTextfield set={<i className="fa fa-unlock-alt" aria-hidden="true"/>} placeholder="Enter password"/>
+                                <SmartTextfield
+                                    type="password"
+                                    onChange={(event) => this.setState({password:event.target.value})}
+                                    set={<i className="fa fa-unlock-alt" aria-hidden="true"/>} placeholder="Enter password"/>
 
                             </div>
                             <Button marginTop="5%" onClick={this.checkPassword}>LOGIN</Button>

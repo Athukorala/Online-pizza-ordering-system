@@ -12,35 +12,32 @@ public class User implements Serializable {
     private int id;
     private String name;
     private String address;
-    private String image;
+    private String email;
+    private String bday;
+    private String country;
+    private String number;
+    private String password;
+    private String instagram;
+    private String fb;
+    private String twitter;
 
     public User() {
     }
 
-    public User(int id) {
-        this.setId(id);
-    }
-
-    public User(int id, String name, String address) {
-        this.setId(id);
-        this.setName(name);
-        this.setAddress(address);
-    }
-    public User(String name, String address) {
-
-        this.setName(name);
-        this.setAddress(address);
-    }
-
-    public User(int id, String name, String address, String image) {
-        this.setId(id);
+    public User(String name, String address, String email, String bday, String country, String number, String password, String instagram, String fb, String twitter) {
         this.name = name;
         this.address = address;
-        this.image = image;
+        this.email = email;
+        this.bday = bday;
+        this.country = country;
+        this.number = number;
+        this.password = password;
+        this.instagram = instagram;
+        this.fb = fb;
+        this.twitter = twitter;
     }
 
     public int getId() {
-
         return id;
     }
 
@@ -64,13 +61,71 @@ public class User implements Serializable {
         this.address = address;
     }
 
-    public String getImage() {
-        return image;
+    public String getEmail() {
+        return email;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+    public String getBday() {
+        return bday;
+    }
+
+    public void setBday(String bday) {
+        this.bday = bday;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getInstagram() {
+        return instagram;
+    }
+
+    public void setInstagram(String instagram) {
+        this.instagram = instagram;
+    }
+
+    public String getFb() {
+        return fb;
+    }
+
+    public void setFb(String fb) {
+        this.fb = fb;
+    }
+
+    public String getTwitter() {
+        return twitter;
+    }
+
+    public void setTwitter(String twitter) {
+        this.twitter = twitter;
+    }
+
+
 
     @Override
     public String toString() {
@@ -78,7 +133,14 @@ public class User implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
-                ", image='" + image + '\'' +
+                ", email='" + email + '\'' +
+                ", bday='" + bday + '\'' +
+                ", country='" + country + '\'' +
+                ", number='" + number + '\'' +
+                ", password='" + password + '\'' +
+                ", instagram='" + instagram + '\'' +
+                ", fb='" + fb + '\'' +
+                ", twitter='" + twitter + '\'' +
                 '}';
     }
 }

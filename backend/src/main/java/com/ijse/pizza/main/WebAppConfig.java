@@ -1,6 +1,5 @@
 package com.ijse.pizza.main;
 
-//import com.ijse.pizza.repository.UserRepository;
 import com.ijse.pizza.repository.UserRepository;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +26,7 @@ public class WebAppConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/images/customer/**").addResourceLocations("/WEB-INF/images/customer/")
+        registry.addResourceHandler("/images/users/**").addResourceLocations("/WEB-INF/images/users/")
                 .setCacheControl(CacheControl.maxAge(2, TimeUnit.HOURS).cachePublic());
 
     }

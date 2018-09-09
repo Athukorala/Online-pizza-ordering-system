@@ -4,6 +4,8 @@ import connect from "react-redux/es/connect/connect";
 import Radium from "radium";
 import Button from "../../../../Components/Common/Button/Button";
 import SmartTextfield from "../../../../Components/Common/TextField/SmartTextfield/SmartTextfield";
+import userAxios from '../../../../axios/axios-user';
+import sweet from 'sweetalert';
 
 class App extends Component {
 
@@ -23,7 +25,62 @@ class App extends Component {
         console.log("twitter : "+this.props.regTwitter);
         console.log("instagram : "+this.props.regInstagram);
 
-        // this.props.regPasswordHandler(false)
+        const userObj = {
+            "id":0,
+            "name":this.props.regName,
+            "address":this.props.regAddress,
+            "email":this.props.regEmail,
+            "bday":this.props.regBday,
+            "country":this.props.regCountry,
+            "number":this.props.regNumber,
+            "password":this.props.regPassword,
+            "instagram":this.props.regInstagram,
+            "fb":this.props.regFb,
+            "twitter":this.props.regTwitter,
+        };
+
+        userAxios.put(`users`, userObj)
+            .then(response => {
+
+                if (response.status === 200) {
+
+                    sweet("Registration Completed!","", {
+                        icon: "success",
+                        buttons: {
+
+                            catch: {
+                                text: "Okay",
+                                value: "catch",
+                            }
+                        },
+                    })
+                        .then((value) => {
+                            switch (value) {
+                                case "catch":
+                                    this.props.regPasswordHandler(false);
+                                    break;
+                            }
+                        });
+
+
+                } else {
+                    sweet({
+                        text: "Failed!",
+                        icon: "warning",
+                        button: "Okay!",
+                    });
+                }
+``
+            })
+            .catch(error => {
+                console.log(error)
+                sweet({
+                    text: "Failed!",
+                    icon: "warning",
+                    button: "Okay!",
+                });
+            });
+
     };
 
     render() {

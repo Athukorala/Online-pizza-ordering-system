@@ -16,46 +16,55 @@ public class UserController {
     private UserService service;
 
     @PutMapping
-    public void saveCustomer(@RequestBody UserDTO customerDTO) {
-        System.out.println("Cus controller: "+customerDTO);
-        service.saveCustomer(customerDTO);
+    public void saveUser(@RequestBody UserDTO UserDTO) {
+        System.out.println(UserDTO);
+        service.saveUser(UserDTO);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCustomer(@PathVariable("id") int customerId) {
+    public void deleteUser(@PathVariable("id") int UserId) {
 
-        service.deleteCustomer(customerId);
+        service.deleteUser(UserId);
     }
 
     @PostMapping("/{id}")
-    public void updateCustomer(@PathVariable("id") int customerId,
-                               @RequestBody UserDTO customerDTO) {
-        System.out.println("id: "+customerId);
-        System.out.println(customerDTO);
+    public void updateUser(@PathVariable("id") int UserId,
+                           @RequestBody UserDTO UserDTO) {
+        System.out.println("id: " + UserId);
+        System.out.println(UserDTO);
 
-        service.updateCustomer(customerId, customerDTO);
+        service.updateUser(UserId, UserDTO);
     }
 
     @GetMapping("/{id}")
-    public UserDTO findCustomer(@PathVariable("id") int customerId) {
-        System.out.println(customerId);
-        return service.findCustomer(customerId);
+    public UserDTO findUser(@PathVariable("id") int UserId) {
+        System.out.println(UserId);
+        return service.findUser(UserId);
     }
 
     @GetMapping
-    public Object findAllCustomers(@RequestParam(value = "action", required = false) String action
-            , @RequestParam(value = "name", required = false) String name) { //action=count | action=like | name=tharindu
+    public Object findAllUsers(@RequestParam(value = "action", required = false) String action
+            , @RequestParam(value = "name", required = false) String name) { //count | like=tharindu | (name=tharindu)
         if (action != null) {
             switch (action) {
                 case "count":
-                    return service.getCustomersCount();
+                    return service.getUsersCount();
                 case "like":
-                    return service.findCustomersLike(name);
+                    return service.findUsersLike(name);
                 default:
-                    return service.findAllCustomers();
+                    return service.findAllUsers();
             }
         } else {
-            return service.findAllCustomers();
+            return service.findAllUsers();
         }
+    }
+
+    @PostMapping
+    public Object checkAccount(@RequestBody UserDTO UserDTO) {
+
+        System.out.println(UserDTO.getEmail());
+        System.out.println(UserDTO.getPassword());
+
+        return service.checkAccount(UserDTO.getEmail(),UserDTO.getPassword());
     }
 }

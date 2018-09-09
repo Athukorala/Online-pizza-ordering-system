@@ -6,18 +6,20 @@ import java.util.List;
 
 public interface UserService {
 
-    void saveCustomer(UserDTO dto);
+    void saveUser(UserDTO dto);
 
-    void updateCustomer(int customerId, UserDTO dto);
+    void updateUser(int UserId, UserDTO dto);
 
-    void deleteCustomer(int customerId);
+    void deleteUser(int UserId);
 
-    UserDTO findCustomer(int customerId);
+    UserDTO findUser(int UserId);
 
-    List<UserDTO> findAllCustomers();
+    List<UserDTO> findAllUsers();
 
-    List<UserDTO> findCustomersLike(String name);
+    List<UserDTO> findUsersLike(String name);
 
-    long getCustomersCount();
+    long getUsersCount();
+
+    UserDTO checkAccount(String email, String password);
 
 }

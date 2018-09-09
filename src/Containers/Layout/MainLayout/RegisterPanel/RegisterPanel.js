@@ -24,12 +24,19 @@ const colStyle = {
     color: 'black'
 };
 
+
 const h5Style = {marginLeft: '15%'};
 
 class App extends Component {
     state={
       disable:true
     };
+
+
+
+    componentDidMount(){
+
+    }
 
     shouldComponentUpdate(nextProps, nextState) {
         return (
