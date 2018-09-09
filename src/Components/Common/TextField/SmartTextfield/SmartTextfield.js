@@ -11,7 +11,12 @@ class App extends Component {
         return (
             <div className="input-group mb-2">
                 <div className="input-group-prepend">
-                    <div className="input-group-text" style={textStyle}>
+                    <div className="input-group-text" style={{
+                        background: '#f58573',
+                        border: '1px solid #f58573',
+                        color: 'white',
+                        marginTop: this.props.top
+                    }}>
                         {/*apend icon--*/}
                         {this.props.set}
                     </div>
@@ -29,6 +34,7 @@ class App extends Component {
                            boxShadow: 'none',
                            background: this.props.background ? this.props.background : 'white'
                        }}
+                       data-tip data-for={this.props.tooltip}
                        disabled={this.props.disabled}
                        onChange={this.props.onChange}
                        value={this.props.value}

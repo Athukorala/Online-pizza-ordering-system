@@ -7,6 +7,9 @@ import Button from "../../../../Components/Common/Button/Button";
 import * as actionCreator from "../../../../store/action";
 import connect from "react-redux/es/connect/connect";
 import Radium from "radium";
+import SmartTextfield from "../../../../Components/Common/TextField/SmartTextfield/SmartTextfield";
+import ReactTooltip from "react-tooltip";
+import sweet from "sweetalert";
 
 
 const popup = {
@@ -25,26 +28,72 @@ class App extends Component {
 
     state = {
         date: "",
+        disable:true
     };
 
+    componentDidUpdate(){
+        // console.log("email "+this.props.regEmail);
+        // console.log("name "+this.props.regName);
+        // console.log("address "+this.props.regAddress);
+        // console.log("country "+this.props.regCountry);
+        // console.log("number "+this.props.regNumber);
+        // console.log("bday "+this.props.regBday);
+        // console.log("image "+this.props.image.length);
+
+        if(this.props.image.length !==0 && this.props.regName !=='' && this.props.regAddress !=='' && this.props.regCountry !=='' && this.props.regNumber !=='' && this.props.regBday !==''){
+            this.setState({
+                disable:false
+            })
+
+        }else{
+            this.setState({
+                disable:true
+            })
+
+        }
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return (
+            (this.props.regName !== nextProps.regName) ||
+            (this.props.regAddress !== nextProps.regAddress) ||
+            (this.props.regBday !== nextProps.regBday) ||
+            (this.props.regCountry !== nextProps.regCountry) ||
+            (this.props.image !== nextProps.image) ||
+            (this.state.disable !== nextState.disable) ||
+            (this.props.regNumber !== nextProps.regNumber))
+    }
 
     datePicker = (date, stringDate) => {
+        this.props.regBdayHandler(stringDate);
         this.setState({
             date: stringDate
         })
     };
 
     nextPasswordHandler = () => {
-        this.props.regPasswordHandlerHandler(true);
+
+        if(!this.state.disable){
+            this.props.regPasswordHandlerHandler(true);
+        }else{
+            sweet({
+                text: 'Please fill all fields and choose your image',
+                icon: "warning",
+                button: "Okay!",
+            })
+        }
+
     };
 
     render() {
+
+        let icon = <i className="fa fa-pencil" aria-hidden="true"/>
         return (
             <div>
                 <center><h1 style={h1Style}>REGISTRATION</h1></center>
                 <div className={superClass.mainDiv}>
                     {/*<h5 style={h5Style}>Person details</h5>*/}
-                    <div className="row" style={{margin:'5% 0% 0%'}}>
+                    <div className="row" style={{margin: '5% 0% 0%'}}>
 
                         {/*image viewer ---*/}
                         <div className="col-sm-6">
@@ -53,14 +102,16 @@ class App extends Component {
                             <div className="form-group" style={{marginTop: '9%'}}>
 
                                 <label htmlFor="userName">User name</label>
-                                <Input width="100%"
-                                       // onChange={(event) => this.nameInput(event.target.value)}
-                                       id="userName"
-                                       placeholder="User name"/>
+                                <SmartTextfield set={icon}
+                                                onChange={(event) => this.props.regNameHandler(event.target.value)}
+                                                id="userName"
+                                                placeholder="User name"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="address">User address</label>
-                                <textarea className="form-control" style={{boxShadow: 'none', border: '1px solid #f58573',color:'black'}}
+                                <textarea onChange={(event) => this.props.regAddressHandler(event.target.value)}
+                                          className="form-control"
+                                          style={{boxShadow: 'none', border: '1px solid #f58573', color: 'black'}}
                                           placeholder="User address" id="address" rows="2">
                             </textarea>
                             </div>
@@ -71,30 +122,37 @@ class App extends Component {
                             <div className="form-group">
                                 <label htmlFor="userName">Select your Birth day</label>
                                 <DatePicker popupStyle={popup} onChange={this.datePicker} style={dark}/>
-                                <Input disabled={true} width="100%"
-                                       value={this.state.date}
+                                <Input value={this.state.date}
+                                       disabled={true}
                                        id="userName"
-                                       placeholder="Select birthday" marginTop='-10%'/>
+                                       placeholder="Select birthday" marginTop='-10%' width="70%"/>
+
                             </div>
 
 
                             <div className="form-group">
                                 <label htmlFor="userName">Select country</label>
-                                <Input width="100%"
-                                       // onChange={(event) => this.nameInput(event.target.value)}
-                                       id="userName"
-                                       placeholder="Select country"/>
+                                <SmartTextfield
+                                    set={icon}
+                                    onChange={(event) => this.props.regCountryHandler(event.target.value)}
+                                    id="userName"
+                                    placeholder="Select country"/>
                             </div>
 
                             <div className="form-group">
                                 <label htmlFor="userName">Mobile Number</label>
-                                <Input width="100%"
-                                       // onChange={(event) => this.nameInput(event.target.value)}
-                                       id="userName"
-                                       placeholder="Mobile Number"/>
+                                <SmartTextfield
+                                    type="number"
+                                    set={icon}
+                                    onChange={(event) => this.props.regNumberHandler(event.target.value)}
+                                    id="userName"
+                                    placeholder="Mobile number"/>
                             </div>
 
-                            <Button marginTop="28%" onClick={this.nextPasswordHandler}>NEXT</Button>
+                            <Button
+                                tooltip="submitButton"
+                                marginTop="28%"
+                                onClick={this.nextPasswordHandler}>NEXT</Button>
 
 
                         </div>
@@ -104,6 +162,9 @@ class App extends Component {
 
 
                 </div>
+                <ReactTooltip id='submitButton' type='error' disable={!this.state.disable}>
+                    <span>Please fill all fields and choose your image</span>
+                </ReactTooltip>
             </div>
         );
     }
@@ -124,12 +185,40 @@ const h5Style = {
 };
 
 
+const mapStateToProps = (state) => {
+
+    return {
+        image: state.isImageReducer.image,
+        regEmail: state.isRegister.regEmail,
+        regName: state.isRegister.regName,
+        regAddress: state.isRegister.regAddress,
+        regBday: state.isRegister.regBday,
+        regCountry: state.isRegister.regCountry,
+        regNumber: state.isRegister.regNumber,
+        regPassword: state.isRegister.regPassword,
+        regInstagram: state.isRegister.regInstagram,
+        regFb: state.isRegister.regFb,
+        regTwitter: state.isRegister.regTwitter,
+    }
+};
+
 const mapDispatchToProps = (dispatch) => {
     return {
         loginHandler: (data) => dispatch(actionCreator.loginHandler(data)),
         regPasswordHandlerHandler: (data) => dispatch(actionCreator.registerPasswordHandler(data)),
+        // register process
+        regNameHandler: (data) => dispatch(actionCreator.regName(data)),
+        regAddressHandler: (data) => dispatch(actionCreator.regAddress(data)),
+        regBdayHandler: (data) => dispatch(actionCreator.regBday(data)),
+        regCountryHandler: (data) => dispatch(actionCreator.regCountry(data)),
+        regNumberHandler: (data) => dispatch(actionCreator.regNumber(data)),
+        regPasswordHandler: (data) => dispatch(actionCreator.regPassword(data)),
+        regInstagramHandler: (data) => dispatch(actionCreator.regInstagram(data)),
+        regFbHandler: (data) => dispatch(actionCreator.regFb(data)),
+        regTwitterHandler: (data) => dispatch(actionCreator.regTwitter(data)),
+
     }
 };
 
 
-export default connect(null, mapDispatchToProps)(Radium(App));
+export default connect(mapStateToProps, mapDispatchToProps)(Radium(App));

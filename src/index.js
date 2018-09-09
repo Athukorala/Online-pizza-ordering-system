@@ -10,7 +10,7 @@ import thunk from 'redux-thunk';
 
 import loginReducer from '../src/store/reducer/LoginReducer';
 import loadingReducer from '../src/store/reducer/LoadingBarReducer';
-
+import registerReducer from '../src/store/reducer/RegisterReducer';
 import imageReducer from '../src/store/reducer/ImageReducer';
 
 
@@ -18,7 +18,8 @@ const rootReducer = combineReducers({
 
     isLoginReducer: loginReducer,
     isLoad: loadingReducer,
-    isImageReducer:imageReducer
+    isImageReducer:imageReducer,
+    isRegister:registerReducer
 
 });
 

@@ -5,6 +5,9 @@ import ScrollableAnchor, {removeHash} from 'react-scrollable-anchor';
 import * as actionCreator from "../../../../store/action";
 import connect from "react-redux/es/connect/connect";
 import SmartTextfield from "../../../../Components/Common/TextField/SmartTextfield/SmartTextfield";
+import ReactTooltip from 'react-tooltip';
+import sweet from 'sweetalert';
+import * as EmailValidator from 'email-validator';
 
 const circleStyle = {
     height: '150px',
@@ -17,12 +20,59 @@ const circleStyle = {
 
 const colStyle = {
     paddingLeft: '5%',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    color: 'black'
 };
 
 const h5Style = {marginLeft: '15%'};
 
 class App extends Component {
+    state={
+      disable:true
+    };
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return (
+            (this.props.isRegEmail !== nextProps.isRegEmail) ||
+            (this.state.disable !== nextState.disable))
+
+    }
+
+
+    componentDidUpdate(){
+        if(this.props.isRegEmail !== ''){
+
+            let validate = EmailValidator.validate(this.props.isRegEmail);
+
+            if (validate) {
+                this.setState({
+                    disable:false
+                })
+            } else {
+                this.setState({
+                    disable:true
+                })
+            }
+        }else{
+            this.setState({
+                disable:true
+            })
+        }
+    }
+
+    submit = () => {
+        if(!this.state.disable){
+            this.props.regPersonDetailsHandler(true);
+            location="#home"
+        }else {
+            sweet({
+                text: 'Please enter valid email..',
+                icon: "warning",
+                button: "Okay!",
+            })
+        }
+
+    };
 
 
     render() {
@@ -76,7 +126,7 @@ class App extends Component {
                             <center><h1 style={h1Style}>HOW IT WORKS</h1></center>
                             <div className="row" style={{marginTop: '8%'}}>
 
-                                <div className="col-sm-3" style={colStyle}>
+                                <div key="5" className="col-sm-3" style={colStyle}>
                                     <h5 style={h5Style}>STEP 01</h5>
                                     <h1 key="1" style={circleStyle}>
 
@@ -87,7 +137,7 @@ class App extends Component {
 
                                 </div>
 
-                                <div className="col-sm-3" style={colStyle}>
+                                <div key="6" className="col-sm-3" style={colStyle}>
                                     <h5 style={h5Style}>STEP 02</h5>
                                     <h1 key="2" style={circleStyle}>
                                         <i style={{marginBottom: '5%'}} className="fa fa-assistive-listening-systems">
@@ -96,7 +146,7 @@ class App extends Component {
 
                                 </div>
 
-                                <div className="col-sm-3" style={colStyle}>
+                                <div key="7" className="col-sm-3" style={colStyle}>
                                     <h5 style={h5Style}>STEP 03</h5>
                                     <h1 key="3" style={circleStyle}>
                                         <i style={{marginBottom: '5%'}} className="fa fa-assistive-listening-systems">
@@ -105,7 +155,7 @@ class App extends Component {
                                     </h1>
 
                                 </div>
-                                <div className="col-sm-3" style={colStyle}>
+                                <div key="8" className="col-sm-3" style={colStyle}>
                                     <h5 style={h5Style}>STEP 04</h5>
                                     <h1 key="4" style={circleStyle}>
                                         <i style={{marginBottom: '5%'}} className="fa fa-assistive-listening-systems">
@@ -136,12 +186,19 @@ class App extends Component {
 
                                 <div className="row" style={{margin: '0'}}>
                                     <div className="col-sm-8">
-                                        <SmartTextfield set="@" placeholder="Enter Your email"/>
+                                        <SmartTextfield
+                                            value={this.props.isRegEmail}
+                                            set="@" placeholder="Enter Your email"
+                                            onChange={(event) => this.props.regEmailHandler(event.target.value)}
+                                        />
 
                                     </div>
                                     <div className="col-sm-4">
-                                        <Button href="#home"
-                                                onClick={() => this.props.regPersonDetailsHandler(true)}>REGISTER</Button>
+                                        <Button
+                                                id="submitButton"
+                                                tooltip="submitButton"
+                                                // disabled={this.state.disable}
+                                                onClick={this.submit}>REGISTER</Button>
                                     </div>
                                 </div>
 
@@ -153,21 +210,35 @@ class App extends Component {
                     </section>
                 </ScrollableAnchor>
 
+
+
+                <ReactTooltip id='submitButton' type='error' disable={!this.state.disable}>
+                    <span>Invalid Email</span>
+                </ReactTooltip>
+
             </div>
+
+
         );
     }
 }
 
 const h1Style = {marginTop: '3%', marginBottom: '5%', width: '50%', borderBottom: '5px solid #FCD1D9'};
 
+const mapStateToProps = (state) => {
+
+    return {
+            isRegEmail:state.isRegister.regEmail
+    }
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        regEmailHandler:(data) => dispatch(actionCreator.regEmail(data)),
         loginHandler: (data) => dispatch(actionCreator.loginHandler(data)),
         regPersonDetailsHandler: (data) => dispatch(actionCreator.registerPersonDetailsHandler(data)),
     }
 };
 
-
-export default connect(null, mapDispatchToProps)(Radium(App));
+export default connect(mapStateToProps, mapDispatchToProps)(Radium(App));
 

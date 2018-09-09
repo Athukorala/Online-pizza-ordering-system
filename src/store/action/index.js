@@ -8,6 +8,22 @@ export  {
 
 } from './LoginActions'
 
+// register process
+
+export  {
+    regEmail,
+    regName,
+    regAddress,
+    regBday,
+    regCountry,
+    regNumber,
+    regPassword,
+    regInstagram,
+    regTwitter,
+    regFb
+
+} from './RegisterActions'
+
 // loading bar changes
 
 export  {

@@ -18,8 +18,9 @@ class App extends Component {
                            // borderRadius: '20px',
                            boxShadow:'none',
                            //background:this.props.background?this.props.background:'linear-gradient(to left, antiquewhite,white)'
-                            background:this.props.background?this.props.background:'white'
+                           background:this.props.background?this.props.background:'white'
                        }}
+                       data-tip data-for={this.props.tooltip}
                        disabled={this.props.disabled}
                        onChange={this.props.onChange}
                        value={this.props.value}
