@@ -25,7 +25,6 @@ class App extends Component {
 
     state = {
         date: "",
-
     };
 
 
@@ -44,8 +43,8 @@ class App extends Component {
             <div>
                 <center><h1 style={h1Style}>REGISTRATION</h1></center>
                 <div className={superClass.mainDiv}>
-                    <h5 style={h5Style}>Person details</h5>
-                    <div className="row" style={{margin: '0%'}}>
+                    {/*<h5 style={h5Style}>Person details</h5>*/}
+                    <div className="row" style={{margin:'5% 0% 0%'}}>
 
                         {/*image viewer ---*/}
                         <div className="col-sm-6">
@@ -55,14 +54,14 @@ class App extends Component {
 
                                 <label htmlFor="userName">User name</label>
                                 <Input width="100%"
-                                       onChange={(event) => this.nameInput(event.target.value)}
+                                       // onChange={(event) => this.nameInput(event.target.value)}
                                        id="userName"
                                        placeholder="User name"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="address">User address</label>
-                                <textarea className="form-control" style={{boxShadow: 'none', border: 'none'}}
-                                          placeholder="User address" id="address" rows="3">
+                                <textarea className="form-control" style={{boxShadow: 'none', border: '1px solid #f58573',color:'black'}}
+                                          placeholder="User address" id="address" rows="2">
                             </textarea>
                             </div>
                         </div>
@@ -72,7 +71,7 @@ class App extends Component {
                             <div className="form-group">
                                 <label htmlFor="userName">Select your Birth day</label>
                                 <DatePicker popupStyle={popup} onChange={this.datePicker} style={dark}/>
-                                <Input width="100%"
+                                <Input disabled={true} width="100%"
                                        value={this.state.date}
                                        id="userName"
                                        placeholder="Select birthday" marginTop='-10%'/>
@@ -82,7 +81,7 @@ class App extends Component {
                             <div className="form-group">
                                 <label htmlFor="userName">Select country</label>
                                 <Input width="100%"
-                                       onChange={(event) => this.nameInput(event.target.value)}
+                                       // onChange={(event) => this.nameInput(event.target.value)}
                                        id="userName"
                                        placeholder="Select country"/>
                             </div>
@@ -90,12 +89,12 @@ class App extends Component {
                             <div className="form-group">
                                 <label htmlFor="userName">Mobile Number</label>
                                 <Input width="100%"
-                                       onChange={(event) => this.nameInput(event.target.value)}
+                                       // onChange={(event) => this.nameInput(event.target.value)}
                                        id="userName"
                                        placeholder="Mobile Number"/>
                             </div>
 
-                            <Button marginTop="35%" onClick={this.nextPasswordHandler}>NEXT</Button>
+                            <Button marginTop="28%" onClick={this.nextPasswordHandler}>NEXT</Button>
 
 
                         </div>
@@ -124,10 +123,6 @@ const h5Style = {
     width: '50%',
 };
 
-const mapStateToProps = (state) => {
-
-
-};
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -137,4 +132,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Radium(App));
+export default connect(null, mapDispatchToProps)(Radium(App));

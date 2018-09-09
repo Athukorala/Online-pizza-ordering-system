@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import * as actionCreator from "../../../store/action";
 import Radium from "radium";
 import superClass from "../../../Content/Outline/style.css";
+import Logo from '../../../Content/Images/logo.png';
 
 const antModalStyle = {opacity: '1.2'};
 
@@ -50,14 +51,16 @@ class App extends Component {
                 <div tabIndex="-1" style={{zIndex: '10000'}} className="ant-modal-wrap vertical-center-modal" role="dialog">
 
                     <div role="document" className="ant-modal" style={{
+                        border:'2px solid #f2654f',
                         fontFamily:'cursive',
                         height:this.props.height,
                         width:this.props.width? this.props.width: '60%',
                         transformOrigin: '245px 476px 0px',
                         top:this.props.top? this.props.top: '5%',
                         borderRadius: '7px',
-                        background: 'linear-gradient(180deg,rgba(255,255,255,0) 60%, #fff),linear-gradient(70deg, #FCD1D9 32%, #ebfff0)'
+                        background: 'linear-gradient(rgba(255, 255, 255, 0) 60%, rgb(255, 255, 255)), linear-gradient(70deg, #ffe0cc 32%, rgb(235, 255, 240))'
                     }}>
+                        <img src={Logo} style={{position:'absolute',width:'12%'}} />
                         <span id="closeBtn"
                               style={closeStyle}
                               className="ant-modal-close-x"

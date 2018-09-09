@@ -13,8 +13,8 @@ class App extends Component {
                            width: this.props.width ? this.props.width : '50%',
                            // height: this.props.height ? this.props.height : '38px',
                            marginTop:this.props.marginTop?this.props.marginTop:'0%',
-                           height: this.props.height ? this.props.height : '34px',
-                           border:'1px solid white',
+                           height: this.props.height ? this.props.height : '38px',
+                           border:'1px solid #f58573',
                            // borderRadius: '20px',
                            boxShadow:'none',
                            //background:this.props.background?this.props.background:'linear-gradient(to left, antiquewhite,white)'

@@ -3,6 +3,7 @@ import * as actionCreator from "../../../../store/action";
 import connect from "react-redux/es/connect/connect";
 import Radium from "radium";
 import Button from "../../../../Components/Common/Button/Button";
+import SmartTextfield from "../../../../Components/Common/TextField/SmartTextfield/SmartTextfield";
 
 class App extends Component {
     render() {
@@ -10,74 +11,33 @@ class App extends Component {
             <div>
                 <center><h1 style={h1Style}>REGISTRATION</h1></center>
                 <h5 style={h5Style}>Social media account details</h5>
-                <div className="row" style={{padding: '3%'}}>
+                <div className="row" style={{padding: '1%'}}>
                     <div className="col-sm-3">
 
 
                     </div>
                     <div className="col-sm-6">
 
-
-
                         {/*instagram---*/}
                         <div className="form-group">
                             <label htmlFor="userName">Enter instagram username</label>
-                        <div className="input-group mb-2">
-                            <div className="input-group-prepend">
-                                <div className="input-group-text" style={{
-                                    background: '#F16883',
-                                    border: '1px solid #F16883',
-                                    color: 'white'
-                                }}><i className="fa fa-instagram" aria-hidden="true">
-                                </i>
-                                </div>
-                            </div>
-                            <input type="text" className="form-control" id="inlineFormInputGroup"
-                                   placeholder="Instagram username  (Ex: John)"
-                                   style={{boxShadow: 'none', border: '1px solid rgb(241, 104, 131)'}}/>
+                            <SmartTextfield set={<i className="fa fa-instagram" aria-hidden="true"/>} placeholder="Instagram username  (ex: john)"/>
 
-                        </div>
                         </div>
                         {/*Facebook---*/}
 
                         <div className="form-group">
                             <label htmlFor="userName">Enter facebook username</label>
-                        <div className="input-group mb-2">
-                            <div className="input-group-prepend">
-                                <div className="input-group-text" style={{
-                                    background: '#F16883',
-                                    border: '1px solid #F16883',
-                                    color: 'white'
-                                }}><i style={{fontSize:'24px'}} className="fa fa-facebook fa-2x" aria-hidden="true">
-                                </i>
-                                </div>
-                            </div>
-                            <input type="text" className="form-control" id="inlineFormInputGroup"
-                                   placeholder="Facebook username  (Ex: John)"
-                                   style={{boxShadow: 'none', border: '1px solid rgb(241, 104, 131)'}}/>
+                            <SmartTextfield set={<i style={{fontSize:'24px'}} className="fa fa-facebook fa-2x" aria-hidden="true"/>} placeholder="Facebook username  (ex: john)"/>
 
-                        </div>
                         </div>
 
                         {/*twitter---*/}
 
                         <div className="form-group">
                             <label htmlFor="userName">Enter twitter username</label>
-                        <div className="input-group mb-2">
-                            <div className="input-group-prepend">
-                                <div className="input-group-text" style={{
-                                    background: '#F16883',
-                                    border: '1px solid #F16883',
-                                    color: 'white'
-                                }}><i style={{fontSize:'15px'}} className="fa fa-twitter fa-2x" aria-hidden="true">
-                                </i>
-                                </div>
-                            </div>
-                            <input type="text" className="form-control" id="inlineFormInputGroup"
-                                   placeholder="Twitter username  (Ex: John)"
-                                   style={{boxShadow: 'none', border: '1px solid rgb(241, 104, 131)'}}/>
+                            <SmartTextfield set={<i style={{fontSize: '15px'}} className="fa fa-twitter fa-2x" aria-hidden="true"/>} placeholder="Twitter username  (ex: john)"/>
 
-                        </div>
                         </div>
 
                         <Button marginTop="5%" onClick={()=>this.props.regPasswordHandlerHandler(false)}>FINISH</Button>
@@ -109,11 +69,6 @@ const h1Style = {
 };
 
 
-const mapStateToProps = (state) => {
-
-
-};
-
 const mapDispatchToProps = (dispatch) => {
     return {
         loginHandler: (data) => dispatch(actionCreator.loginHandler(data)),
@@ -123,4 +78,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Radium(App));
+export default connect(null, mapDispatchToProps)(Radium(App));

@@ -12,27 +12,28 @@ const imgStyle={
     height:'600px'
 }
 
+const listStyle = {width:'30px',height: '3px'};
 
 class App extends Component {
     render() {
         return (
             <div>
                 <ScrollableAnchor id={'home'}>
-                <div id="carouselExampleIndicators" className="carousel slide  carousel-fade" data-ride="carousel">
+                <div id="carouselExampleIndicators" className="carousel slide "/*carousel-fade*/ data-ride="carousel">
                     <ol className="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active">
+                        <li style={listStyle} data-target="#carouselExampleIndicators" data-slide-to="0" className="active">
                         </li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1">
+                        <li style={listStyle} data-target="#carouselExampleIndicators" data-slide-to="1">
                         </li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2">
+                        <li style={listStyle} data-target="#carouselExampleIndicators" data-slide-to="2">
                         </li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="3">
+                        <li style={listStyle} data-target="#carouselExampleIndicators" data-slide-to="3">
                         </li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="4">
+                        <li style={listStyle} data-target="#carouselExampleIndicators" data-slide-to="4">
                         </li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="5">
+                        <li style={listStyle} data-target="#carouselExampleIndicators" data-slide-to="5">
                         </li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="6">
+                        <li style={listStyle} data-target="#carouselExampleIndicators" data-slide-to="6">
                         </li>
                     </ol>
                     <div className="carousel-inner">

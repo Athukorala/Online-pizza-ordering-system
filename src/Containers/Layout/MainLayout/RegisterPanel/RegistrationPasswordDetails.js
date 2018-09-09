@@ -5,6 +5,7 @@ import Button from "../../../../Components/Common/Button/Button";
 import * as actionCreator from "../../../../store/action";
 import connect from "react-redux/es/connect/connect";
 import Radium from "radium";
+import SmartTextfield from "../../../../Components/Common/TextField/SmartTextfield/SmartTextfield";
 
 class App extends Component {
 
@@ -17,86 +18,35 @@ class App extends Component {
             <div>
                 <center><h1 style={h1Style}>REGISTRATION</h1></center>
                 <h5 style={h5Style}>Password details</h5>
-                <div className="row" style={{padding: '3%'}}>
-                    <div className="col-sm-3">
-
-
-                    </div>
+                <div className="row" style={{padding: '1%'}}>
+                    <div className="col-sm-3"/>
                     <div className="col-sm-6">
 
-                        <img style={{
-                            width: '20%',
-                            marginLeft: '35%',
-                            // padding: '10%',
-                            borderRadius: '100px',
-                            marginTop: '-10%',
-                        }} src={password} alt="password"/>
+                        {/*<i style={{ marginLeft: '35%', marginTop: '-22%',}} className="fa fa-unlock-alt fa-4x"/>*/}
+
+                        {/*<img  src={password} alt="password"/>*/}
 
                         <div className="form-group">
                             <label htmlFor="userName">User Email</label>
-                            <div className="input-group mb-2">
-                                <div className="input-group-prepend">
-                                    <div className="input-group-text" style={{
-                                        background: '#F16883',
-                                        border: '1px solid #F16883',
-                                        color: 'white'
-                                    }}>@
+                            <SmartTextfield set="@" placeholder="Enter your email"/>
 
-                                    </div>
-                                </div>
-                                <input type="text" className="form-control" id="inlineFormInputGroup"
-                                       placeholder="Enter your email"
-                                       style={{boxShadow: 'none', border: '1px solid rgb(241, 104, 131)'}}/>
-
-                            </div>
                         </div>
                         <div className="form-group">
                             <label htmlFor="userName">User Password</label>
-                            <div className="input-group mb-2">
-                                <div className="input-group-prepend">
-                                    <div className="input-group-text" style={{
-                                        background: '#F16883',
-                                        border: '1px solid #F16883',
-                                        color: 'white'
-                                    }}><i className="fa fa-unlock-alt" aria-hidden="true">
-                                    </i>
-                                    </div>
-                                </div>
-                                <input type="text" className="form-control" id="inlineFormInputGroup"
-                                       placeholder="Enter password"
-                                       style={{boxShadow: 'none', border: '1px solid rgb(241, 104, 131)'}}/>
+                            <SmartTextfield set={<i className="fa fa-unlock-alt" aria-hidden="true"/>} placeholder="Enter password"/>
 
-                            </div>
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="userName">Re-Enter Password</label>
-                            <div className="input-group mb-2">
-                                <div className="input-group-prepend">
-                                    <div className="input-group-text" style={{
-                                        background: '#F16883',
-                                        border: '1px solid #F16883',
-                                        color: 'white'
-                                    }}><i className="fa fa-unlock-alt" aria-hidden="true">
-                                    </i>
-                                    </div>
-                                </div>
-                                <input type="text" className="form-control" id="inlineFormInputGroup"
-                                       placeholder="Re-Enter password"
-                                       style={{boxShadow: 'none', border: '1px solid rgb(241, 104, 131)'}}/>
+                            <SmartTextfield set={<i className="fa fa-unlock-alt" aria-hidden="true"/>} placeholder="Re-Enter password"/>
 
-                            </div>
                         </div>
 
-                        <Button marginTop="3%" onClick={this.nextPasswordHandler}>NEXT</Button>
-
-
-                    </div>
-                    <div className="col-sm-3">
-
+                        <Button marginTop="5%" onClick={this.nextPasswordHandler}>NEXT</Button>
 
                     </div>
-
+                    <div className="col-sm-3"/>
 
                 </div>
             </div>
@@ -117,11 +67,6 @@ const h1Style = {
     borderBottom: '5px solid #FCD1D9'
 };
 
-const mapStateToProps = (state) => {
-
-
-};
-
 const mapDispatchToProps = (dispatch) => {
     return {
         loginHandler: (data) => dispatch(actionCreator.loginHandler(data)),
@@ -131,4 +76,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Radium(App));
+export default connect(null, mapDispatchToProps)(Radium(App));

@@ -5,6 +5,7 @@ import passwordPic from "../../../../Content/Images/3.png";
 import Button from "../../../../Components/Common/Button/Button";
 import * as actionCreator from "../../../../store/action";
 import connect from "react-redux/es/connect/connect";
+import SmartTextfield from "../../../../Components/Common/TextField/SmartTextfield/SmartTextfield";
 
 class App extends Component {
 
@@ -30,49 +31,18 @@ class App extends Component {
                         <div className="col-sm-6">
                             <div className="form-group">
                                 <label htmlFor="userName">User Email</label>
-                                <div className="input-group mb-2">
-                                    <div className="input-group-prepend">
-                                        <div className="input-group-text" style={{
-                                            background: '#F16883',
-                                            border: '1px solid #F16883',
-                                            color: 'white'
-                                        }}>@
+                                <SmartTextfield set="@" placeholder="Enter your email"/>
 
-                                        </div>
-                                    </div>
-                                    <input type="text" className="form-control" id="inlineFormInputGroup"
-                                           placeholder="Enter your email"
-                                           style={{boxShadow: 'none', border: '1px solid rgb(241, 104, 131)'}}/>
-
-                                </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="userName">User Password</label>
-                                <div className="input-group mb-2">
-                                    <div className="input-group-prepend">
-                                        <div className="input-group-text" style={{
-                                            background: '#F16883',
-                                            border: '1px solid #F16883',
-                                            color: 'white'
-                                        }}><i className="fa fa-unlock-alt" aria-hidden="true">
-                                        </i>
-                                        </div>
-                                    </div>
-                                    <input type="text" className="form-control" id="inlineFormInputGroup"
-                                           placeholder="Enter password"
-                                           style={{boxShadow: 'none', border: '1px solid rgb(241, 104, 131)'}}/>
+                                <SmartTextfield set={<i className="fa fa-unlock-alt" aria-hidden="true"/>} placeholder="Enter password"/>
 
-                                </div>
                             </div>
                             <Button marginTop="5%" onClick={this.checkPassword}>LOGIN</Button>
 
-
                         </div>
-
-
                     </div>
-
-
                 </div>
             </div>
         );
@@ -93,17 +63,11 @@ const h5Style = {
 };
 
 
-const mapStateToProps = (state) => {
-
-
-};
-
 const mapDispatchToProps = (dispatch) => {
     return {
         loginHandler: (data) => dispatch(actionCreator.loginHandler(data)),
-
     }
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps) (App);
+export default connect(null, mapDispatchToProps) (App);

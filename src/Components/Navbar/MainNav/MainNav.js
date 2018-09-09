@@ -20,9 +20,6 @@ class App extends Component {
     };
 
     render() {
-        let customerNumbers = this.state.customerDetails.length;
-        let itemsNumbers = this.state.itemDetails.length;
-
         return (
             <div className={classes.Nav} style={{
                  width: '100%', zIndex: '50', borderBottom: '1px solid  rgb(255, 237, 188',
@@ -38,7 +35,7 @@ class App extends Component {
                     <button className="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
+                        <span className="navbar-toggler-icon"/>
                     </button>
 
                     <div className="collapse navbar-collapse" id="navbarSupportedContent" style={{float: 'right'}}>
@@ -57,9 +54,13 @@ class App extends Component {
                             <ul className="navbar-nav" style={{float: 'right'}}>
 
 
-
                                 <li className="nav-item" style={{float: 'right'}}>
-                                    <a href="#howitworks" onClick={this.item} className="nav-link js-scroll-trigger"  style={astyle}>
+                                    <a href="#whychooseus" onClick={this.item} className="nav-link js-scroll-trigger" style={astyle}>
+                                        &nbsp;&nbsp;&nbsp;WHY CHOOSE US&nbsp;</a>
+                                </li>
+                                &nbsp;
+                                <li className="nav-item" style={{float: 'right'}}>
+                                    <a href="#howitworks" onClick={this.item} className="nav-link js-scroll-trigger" style={astyle}>
                                         &nbsp;&nbsp;&nbsp;HOW IT WORKS&nbsp;</a>
                                 </li>
                                 &nbsp;

@@ -4,10 +4,11 @@ import Button from "../../../../Components/Common/Button/Button";
 import ScrollableAnchor, {removeHash} from 'react-scrollable-anchor';
 import * as actionCreator from "../../../../store/action";
 import connect from "react-redux/es/connect/connect";
+import SmartTextfield from "../../../../Components/Common/TextField/SmartTextfield/SmartTextfield";
 
 const circleStyle = {
     height: '150px',
-    textAlign: 'center', fontSize: '18px', background: '#F48893',
+    textAlign: 'center', fontSize: '18px', background: '#f58573',
     width: '150px', borderRadius: '90px', padding: '15%',
     ":hover": {
         background: '#fcdfc0'
@@ -15,7 +16,8 @@ const circleStyle = {
 };
 
 const colStyle = {
-    paddingLeft: '5%'
+    paddingLeft: '5%',
+    cursor: 'pointer'
 };
 
 const h5Style = {marginLeft: '15%'};
@@ -28,37 +30,43 @@ class App extends Component {
             <div>
 
                 <div
-                    style={{background: 'linear-gradient(180deg,rgba(255,255,255,0) 60%, #fff),linear-gradient(70deg, #FCD1D9 32%, #ebfff0)'}}>
-                    <section style={{
-                        padding: '70px 0',
-                        overflow: 'hidden',
-                        // background: 'white'
-                    }}>
-                        <center><h1 style={h1Style}>WHY CHOOSE US</h1></center>
-                        <div className="row" style={{margin: '0'}}>
+                    style={{background: 'linear-gradient(rgba(255, 255, 255, 0) 60%, rgb(255, 255, 255)), linear-gradient(70deg, #ffe0cc 32%, rgb(235, 255, 240))'}}>
 
-                            <div className="col-sm-3">
+                    <ScrollableAnchor id={'whychooseus'}>
+                        <section style={{
+                            padding: '70px 0',
+                            overflow: 'hidden',
+                            // background: 'white'
+                        }}>
+                            <center><h1 style={h1Style}>WHY CHOOSE US</h1></center>
+                            <div className="row" style={{margin: '0'}}>
+
+                                <div className="col-sm-3">
+
+                                </div>
+
+                                <div className="col-sm-6" style={{marginTop:'3%'}}>
+                                    <h5>here are many variations of passages of Lorem Ipsum available, but the majority
+                                        have
+                                        suffered alteration in some form, by injected humour, or randomised words which
+                                        don't
+                                        look even slightly believable. If you are going to use a passage of Lorem Ipsum,
+                                        you
+                                        need to be sure there isn't anything embarrassing hidden in the middle of text.
+                                        All
+                                        the
+                                        Lorem Ipsum generators
+                                    </h5>
+
+                                </div>
+
+                                <div className="col-sm-3">
+
+                                </div>
 
                             </div>
-
-                            <div className="col-sm-6">
-                                <h5>here are many variations of passages of Lorem Ipsum available, but the majority have
-                                    suffered alteration in some form, by injected humour, or randomised words which
-                                    don't
-                                    look even slightly believable. If you are going to use a passage of Lorem Ipsum, you
-                                    need to be sure there isn't anything embarrassing hidden in the middle of text. All
-                                    the
-                                    Lorem Ipsum generators
-                                </h5>
-
-                            </div>
-
-                            <div className="col-sm-3">
-
-                            </div>
-
-                        </div>
-                    </section>
+                        </section>
+                    </ScrollableAnchor>
 
                     <ScrollableAnchor id={'howitworks'}>
                         <section style={{
@@ -66,28 +74,43 @@ class App extends Component {
                             overflow: 'hidden',
                         }}>
                             <center><h1 style={h1Style}>HOW IT WORKS</h1></center>
-                            <div className="row" style={{margin: '0'}}>
+                            <div className="row" style={{marginTop: '8%'}}>
 
                                 <div className="col-sm-3" style={colStyle}>
                                     <h5 style={h5Style}>STEP 01</h5>
-                                    <h1 key="1" style={circleStyle}>CREATE ORDER</h1>
+                                    <h1 key="1" style={circleStyle}>
+
+                                        <i style={{marginBottom: '5%'}} className="fa fa-assistive-listening-systems">
+                                        </i>
+                                        CREATE ORDER
+                                    </h1>
 
                                 </div>
 
                                 <div className="col-sm-3" style={colStyle}>
                                     <h5 style={h5Style}>STEP 02</h5>
-                                    <h1 key="2" style={circleStyle}>GET DELIVERED</h1>
+                                    <h1 key="2" style={circleStyle}>
+                                        <i style={{marginBottom: '5%'}} className="fa fa-assistive-listening-systems">
+                                        </i>CREATE ORDER
+                                    </h1>
 
                                 </div>
 
                                 <div className="col-sm-3" style={colStyle}>
                                     <h5 style={h5Style}>STEP 03</h5>
-                                    <h1 key="3" style={circleStyle}>CREATE ORDER</h1>
+                                    <h1 key="3" style={circleStyle}>
+                                        <i style={{marginBottom: '5%'}} className="fa fa-assistive-listening-systems">
+                                        </i>
+                                        CREATE ORDER
+                                    </h1>
 
                                 </div>
                                 <div className="col-sm-3" style={colStyle}>
                                     <h5 style={h5Style}>STEP 04</h5>
-                                    <h1 key="4" style={circleStyle}>CREATE ORDER</h1>
+                                    <h1 key="4" style={circleStyle}>
+                                        <i style={{marginBottom: '5%'}} className="fa fa-assistive-listening-systems">
+                                        </i>
+                                        CREATE ORDER</h1>
 
                                 </div>
                             </div>
@@ -113,24 +136,12 @@ class App extends Component {
 
                                 <div className="row" style={{margin: '0'}}>
                                     <div className="col-sm-8">
-                                        <div className="input-group mb-2">
-                                            <div className="input-group-prepend">
-                                                <div className="input-group-text" style={{
-                                                    background: '#F16883',
-                                                    border: '1px solid #F16883',
-                                                    color: 'white'
-                                                }}>@
-                                                </div>
-                                            </div>
-                                            <input type="text" className="form-control" id="inlineFormInputGroup"
-                                                   placeholder="Enter Your email"
-                                                   style={{boxShadow: 'none', border: '1px solid rgb(241, 104, 131)'}}/>
+                                        <SmartTextfield set="@" placeholder="Enter Your email"/>
 
-                                            {/*<Input placeholder="Your email"/>*/}
-                                        </div>
                                     </div>
                                     <div className="col-sm-4">
-                                        <Button href="#home"  onClick={()=>this.props.regPersonDetailsHandler(true)}>REGISTER</Button>
+                                        <Button href="#home"
+                                                onClick={() => this.props.regPersonDetailsHandler(true)}>REGISTER</Button>
                                     </div>
                                 </div>
 
@@ -149,10 +160,6 @@ class App extends Component {
 
 const h1Style = {marginTop: '3%', marginBottom: '5%', width: '50%', borderBottom: '5px solid #FCD1D9'};
 
-const mapStateToProps = (state) => {
-
-
-};
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -162,5 +169,5 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Radium(App));
+export default connect(null, mapDispatchToProps)(Radium(App));
 

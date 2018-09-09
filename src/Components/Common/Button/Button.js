@@ -16,12 +16,12 @@ class App extends Component {
                             background: this.props.background ? this.props.background : 'linear-gradient(to left, #ed4264, #ffedbc)',
                             // borderColor: this.props.backgroundColor ? '#abebab' : '#00C853',
                             color: this.props.color ? this.props.color : 'white',
-                            borderColor: this.props.backgroundColor ? '#abebab' : 'white',
+                            // borderColor: this.props.backgroundColor ? '#abebab' : 'white',
                             outline: 'none',
                             marginBottom: this.props.marginBottom?this.props.marginBottom:'0%',
                             marginTop:this.props.marginTop,
                             boxShadow:'none',
-                            border:'none',
+                            border:'1px solid white',
                             ":hover": {
                                 background: '#FFEFC9',color:'black',border:'1px solid #F16A84'
                             }
