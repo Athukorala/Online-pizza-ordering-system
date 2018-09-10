@@ -12,14 +12,15 @@ import loginReducer from '../src/store/reducer/LoginReducer';
 import loadingReducer from '../src/store/reducer/LoadingBarReducer';
 import registerReducer from '../src/store/reducer/RegisterReducer';
 import imageReducer from '../src/store/reducer/ImageReducer';
-
+import panelReducer from '../src/store/reducer/PanelReducer';
 
 const rootReducer = combineReducers({
 
     isLoginReducer: loginReducer,
     isLoad: loadingReducer,
     isImageReducer:imageReducer,
-    isRegister:registerReducer
+    isRegister:registerReducer,
+    isPanel:panelReducer
 
 });
 

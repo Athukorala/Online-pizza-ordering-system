@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
-import AdminNav from "../../../Components/Navbar/AdminNav/AdminNav";
-import AdminBody from "./AdminBody";
+import React, {Component} from 'react';
 import Footer from "../../../Components/Common/Footer/Footer";
+import UserNav from "../../../Components/Navbar/UserNav/UserNav";
+import UserBody from "./UserBody";
 
 class App extends Component {
     render() {
         return (
             <div>
-                <AdminNav/>
-                <AdminBody/>
+                <UserNav/>
+                <UserBody/>
                 <Footer/>
+
             </div>
         );
     }

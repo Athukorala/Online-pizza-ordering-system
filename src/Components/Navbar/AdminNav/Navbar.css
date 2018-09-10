@@ -1,0 +1,24 @@
+.Nav {
+    /*background:linear-gradient(180deg, rgba(255,255,255,0) 60%, #fff),linear-gradient(70deg, #dbedff 32%, #ebfff0);*/
+    background: linear-gradient(to right, #ffedbc, #f2654f)!important;
+    /*background: #001529 !important;*/
+    /*background:linear-gradient(180deg, rgba(255,255,255,0) 60%, #fff),linear-gradient(70deg, #001529 32%, #ffedbc)*/
+}
+
+.Nav a:hover, a:active, a.active, a:focus {
+
+    color: white;
+    /*border: 1px solid black;*/
+    transition: 0.3s;
+}
+
+.Nav a:hover {
+    color: brown;
+}
+
+
+.img:hover {
+    -ms-transform:scale(1.2)!important;
+    -webkit-transform:scale(1.2)!important;
+    transform:scale(1.2)!important;
+}

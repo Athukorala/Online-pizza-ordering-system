@@ -15,6 +15,8 @@ class App extends Component {
                    disabled={this.props.disabled}
                    data-tip data-for={this.props.tooltip}
                    style={{
+                       borderRadius: this.props.borderRadius,
+                       fontSize:this.props.fontSize,
                        width: this.props.width ? this.props.width : '100%',
                        height: this.props.height ? this.props.height : '40px',
                        // backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : '#00C853',

@@ -6,6 +6,7 @@ import Button from "../../../../Components/Common/Button/Button";
 import SmartTextfield from "../../../../Components/Common/TextField/SmartTextfield/SmartTextfield";
 import userAxios from '../../../../axios/axios-user';
 import sweet from 'sweetalert';
+import Cookies from "js-cookie";
 
 class App extends Component {
 
@@ -57,7 +58,7 @@ class App extends Component {
                         .then((value) => {
                             switch (value) {
                                 case "catch":
-                                    this.props.regPasswordHandler(false);
+                                    this.props.loginHandler(true);
                                     break;
                             }
                         });

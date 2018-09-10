@@ -24,6 +24,16 @@ export  {
 
 } from './RegisterActions'
 
+// main layout chang
+
+export  {
+
+    mainPanelHandle,
+    adminPanelHandle,
+    userPanelHandle,
+
+} from './PanelActions'
+
 // loading bar changes
 
 export  {

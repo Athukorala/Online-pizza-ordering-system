@@ -8,23 +8,30 @@ import connect from "react-redux/es/connect/connect";
 import SmartTextfield from "../../../../Components/Common/TextField/SmartTextfield/SmartTextfield";
 import userAxios from "../../../../axios/axios-user";
 import sweet from "sweetalert";
+import Cookies from 'js-cookie';
 
 class App extends Component {
 
     state={
-        email:'',
-        password:''
+        email:'tharinduathukorala1@gmail.com',
+        password:'1234567'
     };
 
     checkPassword = () => {
         if(this.state.email === '' || this.state.password === ''){
-            sweet({
-                text: 'Please enter email and password..',
-                icon: "warning",
-                button: "Okay!",
-            })
+
+                sweet({
+                    text: 'Please enter email and password..',
+                    icon: "warning",
+                    button: "Okay!",
+                })
         }else{
-            this.backendData();
+
+            if(this.state.email === 'admin' && this.state.password === 'admin'){
+                this.props.adminPanelHandler(true);
+            }else {
+                this.backendData();
+            }
         }
     };
 
@@ -41,8 +48,10 @@ class App extends Component {
                 if (response.status === 200) {
                     if(response.data.id){
                         this.props.loginHandler(false);
+                        Cookies.set('id',response.data.id)
                         sessionStorage.setItem("value_email", this.state.email);
                         sessionStorage.setItem("value_id", response.data.id);
+                        this.props.userPanelHandler(true);
                     }else{
                         sweet({
                             text: "Try again! Incorrect password or email",
@@ -82,6 +91,7 @@ class App extends Component {
                             <div className="form-group">
                                 <label htmlFor="userName">User Email</label>
                                 <SmartTextfield
+                                    value={this.state.email}
                                     onChange={(event) => this.setState({email:event.target.value})}
                                     set="@" placeholder="Enter your email"/>
 
@@ -89,6 +99,7 @@ class App extends Component {
                             <div className="form-group">
                                 <label htmlFor="userName">User Password</label>
                                 <SmartTextfield
+                                    value={this.state.password}
                                     type="password"
                                     onChange={(event) => this.setState({password:event.target.value})}
                                     set={<i className="fa fa-unlock-alt" aria-hidden="true"/>} placeholder="Enter password"/>
@@ -121,6 +132,9 @@ const h5Style = {
 const mapDispatchToProps = (dispatch) => {
     return {
         loginHandler: (data) => dispatch(actionCreator.loginHandler(data)),
+        mainPanelHandler:(data) => dispatch(actionCreator.mainPanelHandle(data)),
+        userPanelHandler: (data) => dispatch(actionCreator.userPanelHandle(data)),
+        adminPanelHandler: (data) => dispatch(actionCreator.adminPanelHandle(data)),
     }
 };
 

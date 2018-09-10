@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import * as actionCreator from "../../../store/action";
 import Radium from "radium";
-import superClass from "../../../Content/Outline/style.css";
 import Logo from '../../../Content/Images/logo.png';
 import sweet from "sweetalert";
 

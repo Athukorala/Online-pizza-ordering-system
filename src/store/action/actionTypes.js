@@ -18,6 +18,12 @@ export const REG_FB = 'REG_FB';
 export const REG_INSTAGRAM = 'REG_INSTAGRAM';
 export const REG_TWITTER = 'REG_TWITTER';
 
+// main layout chang
+
+export const MAIN_PANEL = 'MAIN_PANEL';
+export const ADMIN_PANEL = 'ADMIN_PANEL';
+export const USER_PANEL = 'USER_PANEL';
+
 // loading bar ---
 
 export const LOADING_BAR_START = 'LOADING_BAR_START';
