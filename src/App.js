@@ -3,15 +3,22 @@ import MainBody from "./Containers/LayoutBody/LayoutBody";
 import Cookies from 'js-cookie';
 import * as actionCreator from "./store/action";
 import connect from "react-redux/es/connect/connect";
+import Scroll from "./Components/Navbar/MainNav/Scroll";
 
 class App extends Component {
 
   componentWillMount(){
       let id=Cookies.get('id');
       console.log(id);
+      this.props.allUsersHandler();
 
-      if(id !== null && id !== "" && id !== undefined){
-          this.props.userPanelHandler(true);
+      if(id !== undefined){
+          if(id === "admin"){
+              this.props.adminPanelHandler(true);
+          }else{
+              this.props.userPanelHandler(true);
+          }
+
       }else{
 
       }
@@ -20,6 +27,7 @@ class App extends Component {
   render() {
     return (
       <div>
+          {/*<Scroll/>*/}
         <MainBody/>
       </div>
     );
@@ -31,6 +39,8 @@ const mapDispatchToProps = (dispatch) => {
         mainPanelHandler:(data) => dispatch(actionCreator.mainPanelHandle(data)),
         userPanelHandler: (data) => dispatch(actionCreator.userPanelHandle(data)),
         adminPanelHandler: (data) => dispatch(actionCreator.adminPanelHandle(data)),
+        // all users get
+        allUsersHandler:() =>dispatch(actionCreator.allUsers())
     }
 };
 

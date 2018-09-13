@@ -28,6 +28,7 @@ class App extends Component {
         }else{
 
             if(this.state.email === 'admin' && this.state.password === 'admin'){
+                Cookies.set('id',"admin",{ expires: 7 });
                 this.props.adminPanelHandler(true);
             }else {
                 this.backendData();
@@ -48,7 +49,7 @@ class App extends Component {
                 if (response.status === 200) {
                     if(response.data.id){
                         this.props.loginHandler(false);
-                        Cookies.set('id',response.data.id)
+                        Cookies.set('id',response.data.id,{ expires: 7 });
                         sessionStorage.setItem("value_email", this.state.email);
                         sessionStorage.setItem("value_id", response.data.id);
                         this.props.userPanelHandler(true);

@@ -70,7 +70,6 @@ class App extends Component {
     submit = () => {
         if(!this.state.disable){
             this.props.regPersonDetailsHandler(true);
-            location="#home"
         }else {
             sweet({
                 text: 'Please enter valid email..',
@@ -78,14 +77,11 @@ class App extends Component {
                 button: "Okay!",
             })
         }
-
     };
-
 
     render() {
         return (
             <div>
-
                 <div
                     style={{background: 'linear-gradient(rgba(255, 255, 255, 0) 60%, rgb(255, 255, 255)), linear-gradient(70deg, #ffe0cc 32%, rgb(235, 255, 240))'}}>
 
@@ -217,15 +213,11 @@ class App extends Component {
                     </section>
                 </ScrollableAnchor>
 
-
-
                 <ReactTooltip id='submitButton' type='error' disable={!this.state.disable}>
                     <span>Invalid Email</span>
                 </ReactTooltip>
 
             </div>
-
-
         );
     }
 }
@@ -233,7 +225,6 @@ class App extends Component {
 const h1Style = {marginTop: '3%', marginBottom: '5%', width: '50%', borderBottom: '5px solid #FCD1D9'};
 
 const mapStateToProps = (state) => {
-
     return {
             isRegEmail:state.isRegister.regEmail
     }

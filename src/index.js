@@ -13,6 +13,7 @@ import loadingReducer from '../src/store/reducer/LoadingBarReducer';
 import registerReducer from '../src/store/reducer/RegisterReducer';
 import imageReducer from '../src/store/reducer/ImageReducer';
 import panelReducer from '../src/store/reducer/PanelReducer';
+import adminPanelReducer from '../src/store/reducer/AdminPanelReducer';
 
 const rootReducer = combineReducers({
 
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
     isLoad: loadingReducer,
     isImageReducer:imageReducer,
     isRegister:registerReducer,
-    isPanel:panelReducer
+    isPanel:panelReducer,
+    isAdminPanel: adminPanelReducer
 
 });
 

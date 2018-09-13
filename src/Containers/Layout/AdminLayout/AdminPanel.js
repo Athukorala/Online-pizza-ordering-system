@@ -9,7 +9,7 @@ class App extends Component {
             <div>
                 <AdminNav/>
                 <AdminBody/>
-                <Footer/>
+                {/*<Footer/>*/}
             </div>
         );
     }

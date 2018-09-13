@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,8 +48,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDTO> findAllUsers() {
+        List<User> user =  repository.findAll();
+        System.out.println(user);
+        List<UserDTO> list = new ArrayList<>();
+        for (User entity : user){
+            System.out.println(entity);
+            UserDTO dto = new UserDTO(entity.getId(),entity.getName(),entity.getAddress(),entity.getEmail(),entity.getBday(),entity.getCountry(),entity.getNumber(),entity.getInstagram(),entity.getFb(),entity.getTwitter());
+            list.add(dto);
+        }
+        return list;
 
-        return null;
     }
 
     @Override

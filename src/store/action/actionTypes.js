@@ -18,11 +18,22 @@ export const REG_FB = 'REG_FB';
 export const REG_INSTAGRAM = 'REG_INSTAGRAM';
 export const REG_TWITTER = 'REG_TWITTER';
 
-// main layout chang
+// main layout change
 
 export const MAIN_PANEL = 'MAIN_PANEL';
 export const ADMIN_PANEL = 'ADMIN_PANEL';
 export const USER_PANEL = 'USER_PANEL';
+
+// admin layout change
+
+export const ADMIN_PANEL_CHEF = 'ADMIN_PANEL_CHEF';
+export const ADMIN_PANEL_USER = 'ADMIN_PANEL_USER';
+export const ADMIN_PANEL_ITEM = 'ADMIN_PANEL_ITEM';
+
+// admin panel data loading
+
+export const ALL_USERS = 'ALL_USERS';
+export const ALL_ITEMS = 'ALL_ITEMS';
 
 // loading bar ---
 

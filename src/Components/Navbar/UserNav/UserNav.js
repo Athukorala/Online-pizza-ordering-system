@@ -77,7 +77,7 @@ class App extends Component {
                        className="navbar-brand">
 
                         <img src={Logo} alt="user"
-                             style={{width: '50%', transform: 'scale(1.8)'}}/>
+                             style={{width: '35%', transform: 'scale(1.8)'}}/>
                     </a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

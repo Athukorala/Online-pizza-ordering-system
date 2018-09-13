@@ -30,7 +30,7 @@ class App extends Component {
                        className="navbar-brand">
 
                         <img src={Logo} alt="user"
-                             style={{width: '50%',transform:'scale(1.8)'}}/>
+                             style={{width: '35%',transform:'scale(1.8)'}}/>
                     </a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -71,7 +71,7 @@ class App extends Component {
                                 </li>
                                 &nbsp;
                                 <li className="nav-item" style={{float: 'right'}}>
-                                    <a href="#home" onClick={this.login} className="nav-link js-scroll-trigger" style={astyle}>
+                                    <a /*href="#home"*/ onClick={this.login} className="nav-link js-scroll-trigger" style={astyle}>
                                         &nbsp;&nbsp;&nbsp;LOGIN&nbsp;</a>
                                 </li>
 

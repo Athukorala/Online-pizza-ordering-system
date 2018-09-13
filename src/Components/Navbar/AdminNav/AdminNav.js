@@ -3,6 +3,8 @@ import classes from './Navbar.css';
 import Logo from '../../../Content/Images/logo.png';
 import connect from "react-redux/es/connect/connect";
 import * as actionCreator from '../../../store/action/index';
+import sweet from "sweetalert";
+import Cookies from "js-cookie";
 
 class App extends Component {
     state = {
@@ -12,6 +14,40 @@ class App extends Component {
     };
 
     componentDidMount() {
+
+    };
+    logout = () => {
+
+        sweet("Do you want sign out!", {
+            buttons: {
+                cancel: "NO",
+                catch: {
+                    text: "YES",
+                    value: "catch",
+                },
+            },
+        })
+            .then((value) => {
+                // alert(value)
+                switch (value) {
+                    case "catch":
+                        this.props.mainPanelHandler(true);
+                        this.clearRedux();
+                        break;
+
+                    case "normal":
+
+                        break;
+
+                    default:
+                        break;
+                }
+            });
+    };
+    clearRedux = () => {
+
+        // Cookies.set('id',"");
+        Cookies.remove('id');
 
     };
 
@@ -30,7 +66,7 @@ class App extends Component {
                        className="navbar-brand">
 
                         <img src={Logo} alt="user"
-                             style={{width: '50%',transform:'scale(1.8)'}}/>
+                             style={{width: '35%',transform:'scale(1.8)'}}/>
                     </a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -68,6 +104,12 @@ class App extends Component {
                                         &nbsp;&nbsp;&nbsp;ORDERS&nbsp;</a>
                                 </li>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <li className="nav-item" style={{float: 'right'}}>
+                                    <a onClick={this.logout} className="nav-link js-scroll-trigger" style={logoOutStyle}>
+                                        <i className="fa fa-sign-out" aria-hidden="true"/>
+                                    </a>
+
+                                </li>
 
 
                                 <li className="nav-item" style={{float: 'right'}}>
@@ -98,7 +140,11 @@ const astyle = {
     border: '1px solid transparent',
     fontFamily:'cursive'
 };
-
+const logoOutStyle = {
+    width: '30px', height: '30px',
+    borderRadius: '30px', border: '1px solid',
+    paddingTop: '8%', color: "white", marginTop:'20%'
+};
 
 const mapStateToProps = (state) => {
     return {
@@ -114,6 +160,10 @@ const mapDispatchToProps = (dispatch) => {
     return {
         loginHandler: (data) => dispatch(actionCreator.loginHandler(data)),
         regHandler: (data) => dispatch(actionCreator.registerPersonDetailsHandler(data)),
+        // panel
+        mainPanelHandler: (data) => dispatch(actionCreator.mainPanelHandle(data)),
+        userPanelHandler: (data) => dispatch(actionCreator.userPanelHandle(data)),
+        adminPanelHandler: (data) => dispatch(actionCreator.adminPanelHandle(data)),
     }
 };
 

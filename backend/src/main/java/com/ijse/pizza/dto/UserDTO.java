@@ -33,6 +33,21 @@ public class UserDTO implements Serializable {
         this.twitter = twitter;
     }
 
+    public UserDTO(int id, String name, String address, String email, String bday, String country, String number, String instagram, String fb, String twitter) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.email = email;
+        this.bday = bday;
+        this.country = country;
+        this.number = number;
+        this.password = password;
+        this.instagram = instagram;
+        this.fb = fb;
+        this.twitter = twitter;
+    }
+
+
     public int getId() {
         return id;
     }

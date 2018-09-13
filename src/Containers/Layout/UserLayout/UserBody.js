@@ -11,7 +11,7 @@ import OrderLayout from "./OrderLayout/OrderLayout";
 import Cookies from "js-cookie";
 
 const mainDivStyle = {
-    padding: '8% 2% 0%',
+    padding: '6% 2% 0%',
     background: 'linear-gradient(rgba(255, 255, 255, 0) 60%, rgb(255, 255, 255)), linear-gradient(70deg, #ffe0cc 32%, rgb(235, 255, 240))'
 };
 
