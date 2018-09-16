@@ -9,17 +9,23 @@ import Button from "../../../Components/Common/Button/Button";
 import FontAwesome from "../../../Components/Common/FontAwesome/FontAwesome";
 import OrderLayout from "./OrderLayout/OrderLayout";
 import Cookies from "js-cookie";
+import * as axiosPublic from '../../../axios/axios-public';
 
 const mainDivStyle = {
     padding: '6% 2% 0%',
     background: 'linear-gradient(rgba(255, 255, 255, 0) 60%, rgb(255, 255, 255)), linear-gradient(70deg, #ffe0cc 32%, rgb(235, 255, 240))'
 };
 
+const manage = {
+    padding: '5% 0% 2% 15%'
+};
+
 class App extends Component {
 
     componentDidMount() {
+
         // let id = sessionStorage.getItem("value_id");
-        let id=Cookies.get('id');
+        let id = Cookies.get('id');
         userAxios.get(`users/` + id)
             .then(response => {
                 this.props.regNameHandler(response.data.name);
@@ -32,15 +38,18 @@ class App extends Component {
                 this.props.regFbHandler(response.data.fb);
                 this.props.regTwitterHandler(response.data.twitter);
                 this.props.regEmailHandler(response.data.email);
-                this.props.imageHandler("http://localhost:8081/images/users/" + response.data.email + ".jpg");
+                this.props.imageHandler(axiosPublic.PUBLIC_URL + "/images/users/" + response.data.number + ".jpg");
                 // this.props.imageHandler("images/logo.png");
+                setTimeout(this.stopLoading, 2000);
+
             })
             .catch(error => {
                 console.log(error);
             })
-
     }
-
+    stopLoading = () => {
+        this.props.stopLoadHandler();
+    };
 
     render() {
 
@@ -50,7 +59,7 @@ class App extends Component {
 
         if (this.props.regInstagram === null || this.props.regInstagram === "") {
 
-        }else{
+        } else {
             insta = <div className="col-sm-4">
                 <a style={aStyle} href={"https://www.instagram.com/" + this.props.regInstagram} target="_blank">
                     <small key="1" style={pStyle}><i style={{fontSize: '15px'}} className="fa fa-instagram fa-2x"
@@ -61,7 +70,7 @@ class App extends Component {
         }
         if (this.props.regFb === null || this.props.regFb === "") {
 
-        }else{
+        } else {
             fb = <div className="col-sm-4">
                 <a style={aStyle} href={"https://www.facebook.com/" + this.props.regFb} target="_blank">
                     <small key="2" style={pStyle}><i style={{fontSize: '15px'}} className="fa fa-facebook fa-2x"
@@ -72,7 +81,7 @@ class App extends Component {
         }
         if (this.props.regTwitter === null || this.props.regTwitter === "") {
 
-        }else{
+        } else {
             twitter = <div className="col-sm-4">
                 <a style={aStyle} href={"https://www.twitter.com/" + this.props.regTwitter} target="_blank">
                     <small key="3" style={pStyle}><i style={{fontSize: '15px'}} className="fa fa-twitter fa-2x"
@@ -95,15 +104,22 @@ class App extends Component {
                 <div className="row">
                     <div className="col-sm-3">
                         <HeadFooterCard head={this.props.regName} footer={this.props.regEmail}>
-                            <FontAwesome name="globe"/>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <span>{this.props.regCountry},{this.props.regAddress}</span>
-                            <br/><br/>
-                            <FontAwesome name="mobile"/>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <span style={{fontSize: '12px'}}>{this.props.regNumber}</span>
                             <br/>
+                            <div style={manage}>
+                                <FontAwesome name="globe"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span>{this.props.regCountry},{this.props.regAddress}</span>
+                            </div>
 
-                            <FontAwesome name="birthday-cake"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <div style={manage}>
+                                <FontAwesome name="mobile"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span style={{fontSize: '12px'}}>{this.props.regNumber}</span>
+                            </div>
+
+                            <div style={manage}>
+                                <FontAwesome name="birthday-cake"/>&nbsp;&nbsp;&nbsp;&nbsp;
                                 <span style={{fontSize: '12px'}}>{this.props.regBday}</span>
+                            </div>
+                            <br/>
                         </HeadFooterCard>
                         <br/>
                         <NormalCard header="Create an order">
@@ -191,7 +207,11 @@ const mapDispatchToProps = (dispatch) => {
         regInstagramHandler: (data) => dispatch(actionCreator.regInstagram(data)),
         regFbHandler: (data) => dispatch(actionCreator.regFb(data)),
         regTwitterHandler: (data) => dispatch(actionCreator.regTwitter(data)),
-        imageHandler: (image) => dispatch(actionCreator.imageHandler(image))
+        imageHandler: (image) => dispatch(actionCreator.imageHandler(image)),
+
+        //stop and start loading
+        startLoadHandler: () => dispatch(actionCreator.startLoading()),
+        stopLoadHandler: () => dispatch(actionCreator.stopLoading()),
     }
 };
 

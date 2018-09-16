@@ -39,6 +39,8 @@ class App extends Component {
             name="Do you cancel registration?"
         }else if(this.props.head === 'Login'){
             name="Do you cancel login?"
+        }else if(this.props.head === 'ViewUser'){
+            name="Do you cancel?"
         }
         sweet(name, {
             buttons: {
@@ -66,7 +68,8 @@ class App extends Component {
     };
 
     clearRedux = () => {
-        this.props.regHandler(false);
+        this.props.regHandler(false); // modalClose
+        this.props.userViewerHandler(false); // view user modal close
 
         this.props.regNameHandler("");
         this.props.regAddressHandler("");
@@ -147,7 +150,9 @@ const mapDispatchToProps = (dispatch) => {
         regInstagramHandler: (data) => dispatch(actionCreator.regInstagram(data)),
         regFbHandler: (data) => dispatch(actionCreator.regFb(data)),
         regTwitterHandler: (data) => dispatch(actionCreator.regTwitter(data)),
-        imageHandler: (image) => dispatch(actionCreator.imageHandler(image))
+        imageHandler: (image) => dispatch(actionCreator.imageHandler(image)),
+        // user view panel
+        userViewerHandler: (data) => dispatch(actionCreator.adminViewUserHandler(data)),
     }
 };
 

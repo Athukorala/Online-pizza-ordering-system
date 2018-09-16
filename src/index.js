@@ -14,6 +14,7 @@ import registerReducer from '../src/store/reducer/RegisterReducer';
 import imageReducer from '../src/store/reducer/ImageReducer';
 import panelReducer from '../src/store/reducer/PanelReducer';
 import adminPanelReducer from '../src/store/reducer/AdminPanelReducer';
+import itemHandleReducer from '../src/store/reducer/ItemHandleReducer';
 
 const rootReducer = combineReducers({
 
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
     isImageReducer:imageReducer,
     isRegister:registerReducer,
     isPanel:panelReducer,
-    isAdminPanel: adminPanelReducer
+    isAdminPanel: adminPanelReducer,
+    isItemHandle: itemHandleReducer
 
 });
 

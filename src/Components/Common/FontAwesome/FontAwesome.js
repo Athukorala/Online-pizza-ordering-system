@@ -1,8 +1,9 @@
 import React,{Component} from 'react';
+import Radium from "radium";
 
 const App = (props) => {
-    return <i className={"fa fa-"+props.name} aria-hidden="true"/>
+    return <i className={"fa fa-"+props.name} style={props.style} aria-hidden="true"/>
 
 };
 
-export default App;
+export default Radium(App);

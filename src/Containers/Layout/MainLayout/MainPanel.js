@@ -8,6 +8,7 @@ import RegistrationPersonalDetails from "./RegisterPanel/RegistrationPersonalDet
 import Login from "./LoginForm/Login";
 import RegistrationPasswordDetails from "./RegisterPanel/RegistrationPasswordDetails";
 import RegistrationSocialMediaDetails from "./RegisterPanel/RegistrationSocialMediaDetails";
+import * as actionCreator from "../../../store/action";
 
 class App extends Component {
 

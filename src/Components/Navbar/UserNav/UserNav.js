@@ -49,6 +49,7 @@ class App extends Component {
 
     clearRedux = () => {
 
+        this.props.startLoadHandler();
         // Cookies.set('id',"");
         Cookies.remove('id');
 
@@ -206,7 +207,11 @@ const mapDispatchToProps = (dispatch) => {
         regInstagramHandler: (data) => dispatch(actionCreator.regInstagram(data)),
         regFbHandler: (data) => dispatch(actionCreator.regFb(data)),
         regTwitterHandler: (data) => dispatch(actionCreator.regTwitter(data)),
-        imageHandler: (image) => dispatch(actionCreator.imageHandler(image))
+        imageHandler: (image) => dispatch(actionCreator.imageHandler(image)),
+
+        //stop and start loading
+        startLoadHandler: () => dispatch(actionCreator.startLoading()),
+        stopLoadHandler: () => dispatch(actionCreator.stopLoading()),
     }
 };
 

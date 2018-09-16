@@ -46,8 +46,22 @@ class App extends Component {
     };
     clearRedux = () => {
 
+        this.props.startLoadHandler();
+
         // Cookies.set('id',"");
         Cookies.remove('id');
+
+        this.props.regNameHandler("");
+        this.props.regAddressHandler("");
+        this.props.regBdayHandler("");
+        this.props.regCountryHandler("");
+        this.props.regNumberHandler("");
+        this.props.regPasswordHandler("");
+        this.props.regInstagramHandler("");
+        this.props.regFbHandler("");
+        this.props.regTwitterHandler("");
+        this.props.regEmailHandler("");
+        this.props.imageHandler([]);
 
     };
 
@@ -164,6 +178,23 @@ const mapDispatchToProps = (dispatch) => {
         mainPanelHandler: (data) => dispatch(actionCreator.mainPanelHandle(data)),
         userPanelHandler: (data) => dispatch(actionCreator.userPanelHandle(data)),
         adminPanelHandler: (data) => dispatch(actionCreator.adminPanelHandle(data)),
+
+        // register process
+        regEmailHandler:(data) => dispatch(actionCreator.regEmail(data)),
+        regNameHandler: (data) => dispatch(actionCreator.regName(data)),
+        regAddressHandler: (data) => dispatch(actionCreator.regAddress(data)),
+        regBdayHandler: (data) => dispatch(actionCreator.regBday(data)),
+        regCountryHandler: (data) => dispatch(actionCreator.regCountry(data)),
+        regNumberHandler: (data) => dispatch(actionCreator.regNumber(data)),
+        regPasswordHandler: (data) => dispatch(actionCreator.regPassword(data)),
+        regInstagramHandler: (data) => dispatch(actionCreator.regInstagram(data)),
+        regFbHandler: (data) => dispatch(actionCreator.regFb(data)),
+        regTwitterHandler: (data) => dispatch(actionCreator.regTwitter(data)),
+        imageHandler: (image) => dispatch(actionCreator.imageHandler(image)),
+
+        //stop and start loading
+        startLoadHandler: () => dispatch(actionCreator.startLoading()),
+        stopLoadHandler: () => dispatch(actionCreator.stopLoading()),
     }
 };
 

@@ -44,7 +44,7 @@ public class UserController {
 
     @GetMapping
     public Object findAllUsers(@RequestParam(value = "action", required = false) String action
-            , @RequestParam(value = "name", required = false) String name) { //count | like=tharindu | (name=tharindu)
+            , @RequestParam(value = "name", required = false) String name) { // action=count | (name=tharindu)
         if (action != null) {
             switch (action) {
                 case "count":

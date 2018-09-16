@@ -26,7 +26,7 @@ public class WebAppConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/images/users/**").addResourceLocations("/WEB-INF/images/users/")
+        registry.addResourceHandler("/images/users/**").addResourceLocations("/images/users/")
                 .setCacheControl(CacheControl.maxAge(2, TimeUnit.HOURS).cachePublic());
 
     }

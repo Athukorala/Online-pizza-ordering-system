@@ -163,7 +163,7 @@ class App extends Component {
 
                 </div>
                 <ReactTooltip id='submitButton' type='error' disable={!this.state.disable}>
-                    <span>Please fill all fields and choose your image</span>
+                    <span>Please fill all fields and choose image</span>
                 </ReactTooltip>
             </div>
         );

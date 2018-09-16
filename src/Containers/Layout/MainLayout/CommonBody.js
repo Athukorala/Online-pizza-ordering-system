@@ -7,6 +7,9 @@ import pic5 from '../../../Content/Images/8.jpg';
 import pic6 from '../../../Content/Images/7.jpg';
 import RegisterPanel from "./RegisterPanel/RegisterPanel";
 import ScrollableAnchor from "react-scrollable-anchor";
+import * as actionCreator from "../../../store/action";
+import connect from "react-redux/es/connect/connect";
+import Radium from "radium";
 
 const imgStyle={
     height:'600px'
@@ -15,6 +18,16 @@ const imgStyle={
 const listStyle = {width:'30px',height: '3px'};
 
 class App extends Component {
+
+    componentDidMount(){
+        //stop loading
+        setTimeout(this.stopLoading, 2000);
+    }
+    stopLoading = () => {
+        console.log("ok")
+        this.props.stopLoadHandler()
+    };
+
     render() {
         return (
             <div>
@@ -104,4 +117,13 @@ class App extends Component {
     }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+        //stop and start loading
+        startLoadHandler: () => dispatch(actionCreator.startLoading()),
+        stopLoadHandler: () => dispatch(actionCreator.stopLoading()),
+    }
+};
+
+export default connect(null, mapDispatchToProps)(Radium(App));

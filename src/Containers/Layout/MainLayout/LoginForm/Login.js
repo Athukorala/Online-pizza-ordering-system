@@ -26,9 +26,12 @@ class App extends Component {
                     button: "Okay!",
                 })
         }else{
+            //start loading
+            this.props.startLoadHandler();
 
             if(this.state.email === 'admin' && this.state.password === 'admin'){
                 Cookies.set('id',"admin",{ expires: 7 });
+                this.props.loginHandler(false);
                 this.props.adminPanelHandler(true);
             }else {
                 this.backendData();
@@ -37,6 +40,7 @@ class App extends Component {
     };
 
     backendData = () => {
+
         const obj={
             "email":this.state.email,
             "password":this.state.password
@@ -50,10 +54,9 @@ class App extends Component {
                     if(response.data.id){
                         this.props.loginHandler(false);
                         Cookies.set('id',response.data.id,{ expires: 7 });
-                        sessionStorage.setItem("value_email", this.state.email);
-                        sessionStorage.setItem("value_id", response.data.id);
                         this.props.userPanelHandler(true);
                     }else{
+                        this.props.stopLoadHandler();
                         sweet({
                             text: "Try again! Incorrect password or email",
                             icon: "warning",
@@ -63,6 +66,7 @@ class App extends Component {
                 }
             })
             .catch(error => {
+                this.props.stopLoadHandler();
                 console.log(error)
                 sweet({
                     text: "Failed!",
@@ -136,6 +140,10 @@ const mapDispatchToProps = (dispatch) => {
         mainPanelHandler:(data) => dispatch(actionCreator.mainPanelHandle(data)),
         userPanelHandler: (data) => dispatch(actionCreator.userPanelHandle(data)),
         adminPanelHandler: (data) => dispatch(actionCreator.adminPanelHandle(data)),
+
+        //stop and start loading
+        startLoadHandler: () => dispatch(actionCreator.startLoading()),
+        stopLoadHandler: () => dispatch(actionCreator.stopLoading()),
     }
 };
 

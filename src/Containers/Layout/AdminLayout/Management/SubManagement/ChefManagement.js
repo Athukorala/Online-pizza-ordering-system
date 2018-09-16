@@ -4,7 +4,7 @@ class App extends Component{
     render(){
         return(
             <div>
-                <h5 style={h4Style}>Chef Management</h5>
+                <p style={h4Style}>Chef Management</p>
             </div>
         )
     }

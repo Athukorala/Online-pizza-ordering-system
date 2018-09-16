@@ -41,6 +41,10 @@ export  {
     adminItemHandler,
     adminChefHandler,
     adminUserHandler,
+    adminOrdersHandler,
+
+    adminViewUserHandler,
+    adminViewItemHandler,
 
 } from './AdminPanelActions'
 
@@ -52,6 +56,19 @@ export  {
     allItems
 
 } from './AdminPanelDataLoadActions'
+
+// items
+
+export  {
+
+    itemName,
+    itemDescription,
+    itemType,
+    itemMediumPrice,
+    itemSmallPrice,
+    itemLargePrice
+
+} from './ItemHandleActions'
 
 // loading bar changes
 

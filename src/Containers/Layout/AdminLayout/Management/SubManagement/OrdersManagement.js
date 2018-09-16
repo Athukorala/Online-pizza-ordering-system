@@ -5,7 +5,7 @@ class App extends Component{
     render(){
         return(
             <div>
-                <h5 style={h4Style}>Item Management</h5>
+                <p style={h4Style}>Order Management</p>
             </div>
         )
     }

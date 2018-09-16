@@ -32,7 +32,8 @@ class App extends Component {
                            height: this.props.height ? this.props.height : '38px',
                            border: '1px solid #f58573',
                            boxShadow: 'none',
-                           background: this.props.background ? this.props.background : 'white'
+                           background: this.props.background ? this.props.background : 'white',
+                           fontSize: this.props.fontSize
                        }}
                        data-tip data-for={this.props.tooltip}
                        disabled={this.props.disabled}

@@ -29,11 +29,25 @@ export const USER_PANEL = 'USER_PANEL';
 export const ADMIN_PANEL_CHEF = 'ADMIN_PANEL_CHEF';
 export const ADMIN_PANEL_USER = 'ADMIN_PANEL_USER';
 export const ADMIN_PANEL_ITEM = 'ADMIN_PANEL_ITEM';
+export const ADMIN_PANEL_ORDERS = 'ADMIN_PANEL_ORDERS';
+
+export const ADMIN_PANEL_USER_VIEWER = 'ADMIN_PANEL_USER_VIEWER';
+export const ADMIN_PANEL_ITEM_VIEWER = 'ADMIN_PANEL_ITEM_VIEWER';
 
 // admin panel data loading
 
 export const ALL_USERS = 'ALL_USERS';
 export const ALL_ITEMS = 'ALL_ITEMS';
+
+// items
+
+export const ITEM_NAME='ITEM_NAME' ;
+export const ITEM_DESCRIPTION='ITEM_DESCRIPTION ';
+export const ITEM_MEDIUM_PRICE='ITEM_MEDIUM_PRICE' ;
+export const ITEM_SMALL_PRICE='ITEM_SMALL_PRICE' ;
+export const ITEM_LARGE_PRICE='ITEM_LARGE_PRICE' ;
+export const ITEM_TYPE= 'ITEM_TYPE';
+
 
 // loading bar ---
 

@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 
 const headStyle={background:'#F9B196'}
 const bodyStyle = {
-    background: '#FFF9F5', paddingLeft:'20%', textAlign:'left', fontSize:'14px'
+    background: '#FFF9F5',  textAlign:'left', fontSize:'14px',padding:'0'
 };
 
 const footerStyle = {color:'black',fontSize: '12px'};
@@ -13,7 +13,7 @@ export default class App extends Component{
     }
     render(){
         return(
-            <div className="card text-center"  style={{width: '18rem'}}>
+            <div className="card text-center"  style={{width: '18rem', cursor:'pointer'}}>
                 <div className="card-header" style={headStyle}>
                     {this.props.head}
                 </div>

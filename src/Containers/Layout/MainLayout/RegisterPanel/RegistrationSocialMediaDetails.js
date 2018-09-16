@@ -7,11 +7,25 @@ import SmartTextfield from "../../../../Components/Common/TextField/SmartTextfie
 import userAxios from '../../../../axios/axios-user';
 import sweet from 'sweetalert';
 import Cookies from "js-cookie";
+import uploadAxios from "../../../../axios/axios-imageupload";
+
+const bodyFormData = new FormData();
 
 class App extends Component {
 
 
     submit = () => {
+
+        bodyFormData.set("file", this.props.image);
+
+        uploadAxios.post(`/user/`+this.props.regNumber, bodyFormData)
+            .then(response => {
+                console.log(response)
+            })
+
+            .catch(error => {
+                console.log("error: " + error)
+            });
 
         console.log("email : "+this.props.regEmail);
         console.log("name : "+this.props.regName);
@@ -60,6 +74,9 @@ class App extends Component {
                                 case "catch":
                                     this.props.loginHandler(true);
                                     break;
+
+                                default:
+                                    this.props.loginHandler(true);
                             }
                         });
 

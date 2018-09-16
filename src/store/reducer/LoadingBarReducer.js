@@ -2,7 +2,7 @@ import * as actionTypes from '../action/actionTypes';
 
 const initialState = {
     stop:false,
-    start:false
+    start:true
 };
 
 const reducer=(state=initialState,action)=>{

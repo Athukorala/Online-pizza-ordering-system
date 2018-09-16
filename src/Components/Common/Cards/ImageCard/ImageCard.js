@@ -28,7 +28,7 @@ class App extends Component{
 
 }
 const divStyle = {
-    width: '12rem',marginLeft:'2%',marginBottom:'1%',
+    width: '12rem',marginLeft:'2%',marginBottom:'1%', cursor:'pointer',
     ":hover":{
         boxShadow:'rgb(201, 201, 201) 0px 0px 20px 2px'
     }
@@ -36,6 +36,7 @@ const divStyle = {
 
 const imageStyle = {
     height:'150px', objectFit:'contain',background:'antiquewhite',
+    borderBottom:'1px solid lightgray'
 
 };
 

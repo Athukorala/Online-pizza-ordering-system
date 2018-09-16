@@ -4,10 +4,14 @@ const initialState = {
     admin_panel_item:true,
     admin_panel_chef:false,
     admin_panel_user:false,
+    admin_panel_orders:false,
+
+    admin_panel_user_viewer: false,
+    admin_panel_item_viewer: false,
 
     allItems:[],
     allChefs:[],
-    allUsers:[]
+    allUsers:[],
 };
 
 const reducer=(state=initialState,action)=>{
@@ -19,7 +23,8 @@ const reducer=(state=initialState,action)=>{
                 ...state,
                 admin_panel_item:true,
                 admin_panel_chef:false,
-                admin_panel_user:false
+                admin_panel_user:false,
+                admin_panel_orders:false,
             };
 
         case actionTypes.ADMIN_PANEL_USER:
@@ -27,14 +32,39 @@ const reducer=(state=initialState,action)=>{
                 ...state,
                 admin_panel_item:false,
                 admin_panel_chef:false,
-                admin_panel_user:true
+                admin_panel_user:true,
+                admin_panel_orders:false,
             };
         case actionTypes.ADMIN_PANEL_CHEF:
             return {
                 ...state,
                 admin_panel_item:false,
                 admin_panel_chef:true,
-                admin_panel_user:false
+                admin_panel_user:false,
+                admin_panel_orders:false,
+            };
+
+        case actionTypes.ADMIN_PANEL_ORDERS:
+            return {
+                ...state,
+                admin_panel_item:false,
+                admin_panel_chef:false,
+                admin_panel_user:false,
+                admin_panel_orders:true,
+            };
+
+        case actionTypes.ADMIN_PANEL_USER_VIEWER:
+            return {
+                ...state,
+                admin_panel_user_viewer: action.value,
+                admin_panel_item_viewer: false,
+            };
+
+        case actionTypes.ADMIN_PANEL_ITEM_VIEWER:
+            return {
+                ...state,
+                admin_panel_user_viewer: false,
+                admin_panel_item_viewer: action.value,
             };
             //----------------------
 
@@ -49,6 +79,8 @@ const reducer=(state=initialState,action)=>{
                 ...state,
                 allItems: action.value
             };
+
+
 
         default:
             return state;
