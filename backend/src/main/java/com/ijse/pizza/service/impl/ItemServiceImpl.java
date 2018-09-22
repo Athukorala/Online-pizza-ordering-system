@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -37,12 +38,19 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ItemDTO findItem(int itemId) {
+
         return null;
     }
 
     @Override
     public List<ItemDTO> findAllItems() {
-        return null;
+        List<Item> item =  repository.findAll();
+        List<ItemDTO> list = new ArrayList<>();
+        for (Item entity : item){
+            ItemDTO dto = new ItemDTO(entity.getCode(),entity.getName(),entity.getDescription(),entity.getType(),entity.getSmall(),entity.getMedium(),entity.getLarge());
+            list.add(dto);
+        }
+        return list;
     }
 
     @Override

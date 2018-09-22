@@ -13,9 +13,23 @@ public class ItemController {
     private ItemService service;
 
     @PutMapping
-    public void saveUser(@RequestBody ItemDTO itemDTO) {
+    public void saveItem(@RequestBody ItemDTO itemDTO) {
         System.out.println(itemDTO);
         service.saveItem(itemDTO);
     }
+
+    @GetMapping
+    public Object getAllItems(@RequestParam(value = "action", required = false) String action) { // action=count | (name=tharindu)
+        if (action != null) {
+            switch (action) {
+                default:
+                    return service.findAllItems();
+            }
+        } else {
+            return service.findAllItems();
+        }
+    }
+
+
 
 }

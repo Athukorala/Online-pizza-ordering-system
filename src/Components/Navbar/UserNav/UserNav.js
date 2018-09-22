@@ -5,13 +5,14 @@ import connect from "react-redux/es/connect/connect";
 import * as actionCreator from '../../../store/action/index';
 import sweet from "sweetalert";
 import Cookies from 'js-cookie';
+import {NavLink} from "react-router-dom";
 
 class App extends Component {
     state = {
         customerDetails: [],
         itemDetails: [],
         count: 0,
-        cartValue:10,
+        cartValue: 10,
     };
 
     componentDidMount() {
@@ -101,24 +102,11 @@ class App extends Component {
                         <form className="form-inline my-2 my-lg-0">
                             <ul className="navbar-nav" style={{float: 'right'}}>
 
-                                <li className="nav-item" style={{float: 'right'}}>
-                                    <a href="#pending" onClick={this.item} className="nav-link js-scroll-trigger"
-                                       style={astyle}>
-                                        &nbsp;&nbsp;&nbsp;PENDING ORDERS&nbsp;</a>
-                                </li>
-                                &nbsp;
-                                <li className="nav-item" style={{float: 'right'}}>
-                                    <a href="#ongoing" onClick={this.item} className="nav-link js-scroll-trigger"
-                                       style={astyle}>
-                                        &nbsp;&nbsp;&nbsp;ONGOING ORDERS&nbsp;</a>
-                                </li>
-                                &nbsp;
-                                <li className="nav-item" style={{float: 'right'}}>
-                                    <a href="#complete" onClick={this.item} className="nav-link js-scroll-trigger"
-                                       style={astyle}>
-                                        &nbsp;&nbsp;&nbsp;COMPLETE ORDERS&nbsp;</a>
-                                </li>
-                                &nbsp;
+                                <NavLink to="/" style={homestyle}>
+                                    <li className="nav-item" style={{float: 'right'}}>
+                                        HOME
+                                    </li>
+                                </NavLink>
 
                                 <li className="nav-item" style={{float: 'right'}}>
                                     <a onClick={this.item} className="nav-link js-scroll-trigger" style={astyle}>
@@ -127,22 +115,19 @@ class App extends Component {
                                 &nbsp;
                                 <li className="nav-item" style={{float: 'right'}}>
 
-                                    <a href="#cart" className="nav-link js-scroll-trigger" style={astyle}>
+                                    <a className="nav-link js-scroll-trigger" style={astyle}>
                                         <i className="fa fa-shopping-cart fa-2x" aria-hidden="true"/>&nbsp;&nbsp;
-                                        <span className="badge badge-light" style={{color: 'red',paddingTop:'15%'}}>{this.state.cartValue}</span>
+                                        <span className="badge badge-light"
+                                              style={{color: 'red', paddingTop: '15%'}}>{this.state.cartValue}</span>
                                     </a>
                                 </li>
 
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <li className="nav-item" style={{float: 'right'}}>
-                                    <a onClick={this.logout} className="nav-link js-scroll-trigger" style={logoOutStyle}>
+                                    <a onClick={this.logout} className="nav-link js-scroll-trigger"
+                                       style={logoOutStyle}>
                                         <i className="fa fa-sign-out" aria-hidden="true"/>
                                     </a>
-
-                                </li>
-
-
-                                <li className="nav-item" style={{float: 'right'}}>
                                 </li>
                             </ul>
 
@@ -165,7 +150,15 @@ class App extends Component {
 const logoOutStyle = {
     width: '30px', height: '30px',
     borderRadius: '30px', border: '1px solid',
-    paddingTop: '8%', color: "white", marginTop:'20%'
+    paddingTop: '8%', color: "white", marginTop: '20%'
+};
+const homestyle = {
+    color: "white",
+    marginLeft: '0px',
+    fontSize: '14px',
+    border: '1px solid transparent',
+    fontFamily: 'cursive',
+    marginTop:'6%'
 };
 
 const astyle = {
@@ -173,7 +166,8 @@ const astyle = {
     marginLeft: '0px',
     fontSize: '14px',
     border: '1px solid transparent',
-    fontFamily: 'cursive'
+    fontFamily: 'cursive',
+
 };
 
 
@@ -197,7 +191,7 @@ const mapDispatchToProps = (dispatch) => {
         adminPanelHandler: (data) => dispatch(actionCreator.adminPanelHandle(data)),
 
         // register process
-        regEmailHandler:(data) => dispatch(actionCreator.regEmail(data)),
+        regEmailHandler: (data) => dispatch(actionCreator.regEmail(data)),
         regNameHandler: (data) => dispatch(actionCreator.regName(data)),
         regAddressHandler: (data) => dispatch(actionCreator.regAddress(data)),
         regBdayHandler: (data) => dispatch(actionCreator.regBday(data)),

@@ -4,14 +4,15 @@ import Cookies from 'js-cookie';
 import * as actionCreator from "./store/action";
 import connect from "react-redux/es/connect/connect";
 import SpinGIF from "./Components/Common/SpinGIF/SpinGIF";
+import {withRouter} from "react-router-dom";
 
 class App extends Component {
-
 
     componentWillMount() {
         let id = Cookies.get('id');
         console.log(id);
         this.props.allUsersHandler();
+        this.props.allItemsHandler();
 
         if (id !== undefined) {
             if (id === "admin") {
@@ -19,17 +20,12 @@ class App extends Component {
             } else {
                 this.props.userPanelHandler(true);
             }
-
-        } else {
-
         }
     }
 
     render() {
-
         return (
             <div>
-                {/*<Scroll/>*/}
                 <MainBody/>
                 <SpinGIF/>
             </div>
@@ -43,10 +39,12 @@ const mapDispatchToProps = (dispatch) => {
         mainPanelHandler: (data) => dispatch(actionCreator.mainPanelHandle(data)),
         userPanelHandler: (data) => dispatch(actionCreator.userPanelHandle(data)),
         adminPanelHandler: (data) => dispatch(actionCreator.adminPanelHandle(data)),
-        // all users get
-        allUsersHandler: () => dispatch(actionCreator.allUsers())
+
+        // all users and items get ,
+        allUsersHandler: () => dispatch(actionCreator.allUsers()),
+        allItemsHandler: () => dispatch(actionCreator.allItems())
     }
 };
 
 
-export default connect(null, mapDispatchToProps)(App);
+export default withRouter(connect(null, mapDispatchToProps)(App));

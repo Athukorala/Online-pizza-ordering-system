@@ -17,17 +17,14 @@ import java.util.concurrent.TimeUnit;
 @ComponentScan("com.ijse.pizza")
 @EnableJpaRepositories(basePackageClasses = {UserRepository.class})
 public class WebAppConfig implements WebMvcConfigurer {
-
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
 
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/images/users/**").addResourceLocations("/images/users/")
                 .setCacheControl(CacheControl.maxAge(2, TimeUnit.HOURS).cachePublic());
-
     }
 }

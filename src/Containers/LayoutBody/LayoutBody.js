@@ -4,6 +4,7 @@ import UserPanel from "../Layout/UserLayout/UserPanel";
 import AdminPanel from "../Layout/AdminLayout/AdminPanel";
 import * as actionCreator from "../../store/action";
 import connect from "react-redux/es/connect/connect";
+import {withRouter} from "react-router-dom";
 
 class App extends Component{
 
@@ -46,4 +47,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

@@ -7,23 +7,25 @@ import * as axiosPublic from '../../../../axios/axios-public';
 class App extends Component{
 
     viewUser = () => {
-        console.log(this.props.userObj)
-        let user = this.props.userObj;
+        if(this.props.validation){
+            console.log(this.props.userObj)
+            let user = this.props.userObj;
 
-        this.props.regNameHandler(user.name);
-        this.props.regAddressHandler(user.address);
-        this.props.regBdayHandler(user.bday);
-        this.props.regCountryHandler(user.country);
-        this.props.regNumberHandler(user.number);
-        this.props.regPasswordHandler("");
-        this.props.regInstagramHandler(user.instagram);
-        this.props.regFbHandler(user.fb);
-        this.props.regTwitterHandler(user.twitter);
-        this.props.regEmailHandler(user.email);
-        this.props.imageHandler(axiosPublic.PUBLIC_URL+"/images/users/" + user.number + ".jpg");
+            this.props.regNameHandler(user.name);
+            this.props.regAddressHandler(user.address);
+            this.props.regBdayHandler(user.bday);
+            this.props.regCountryHandler(user.country);
+            this.props.regNumberHandler(user.number);
+            this.props.regPasswordHandler("");
+            this.props.regInstagramHandler(user.instagram);
+            this.props.regFbHandler(user.fb);
+            this.props.regTwitterHandler(user.twitter);
+            this.props.regEmailHandler(user.email);
+            this.props.imageHandler(axiosPublic.PUBLIC_URL+"/images/users/" + user.number + ".jpg");
 
-        this.props.userViewerHandler(true);
-    }
+            this.props.userViewerHandler(true);
+        }
+    };
 
     render(){
         return(

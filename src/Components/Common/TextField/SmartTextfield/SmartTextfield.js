@@ -24,6 +24,7 @@ class App extends Component {
                 <input className="form-control"
                        id={this.props.id}
                        placeholder={this.props.placeholder}
+                       onKeyDown={this.props.onKeyDown}
 
                        style={{
                            color: this.props.color ? this.props.color : 'black',

@@ -85,6 +85,26 @@ class App extends Component {
 
     };
 
+    checkNumber = (event) => {
+
+        if ([69, 187, 188, 189, 190].includes(event.keyCode)) {
+            event.preventDefault();
+        }else{
+
+        }
+    }
+
+
+    componentDidMount(){
+        // let mobnum = document.getElementById("mobnum");
+        // mobnum.addEventListener("keydown", function(e) {
+        //     // prevent: "e", "=", ",", "-", "."
+        //     if ([69, 187, 188, 189, 190].includes(e.keyCode)) {
+        //         console.log("error: "+e)
+        //         e.preventDefault();
+        //     }
+        // })
+    }
     render() {
 
         let icon = <i className="fa fa-pencil" aria-hidden="true"/>
@@ -142,10 +162,11 @@ class App extends Component {
                             <div className="form-group">
                                 <label htmlFor="userName">Mobile Number</label>
                                 <SmartTextfield
+                                    onKeyDown={this.checkNumber}
                                     type="number"
                                     set={icon}
                                     onChange={(event) => this.props.regNumberHandler(event.target.value)}
-                                    id="userName"
+                                    id="mobnum"
                                     placeholder="Mobile number"/>
                             </div>
 

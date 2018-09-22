@@ -4,12 +4,17 @@ import Radium from "radium";
 import CompleteOrders from "./OrderState/CompleteOrders";
 import PendingOrders from "./OrderState/PendingOrders";
 import OngoingOrders from "./OrderState/OngoingOrders";
+import {withRouter} from "react-router-dom";
 
-const rowtyle = {borderBottom: '1px solid rgb(249, 177, 150)',margin: '1% 0 0 0'};
+const rowtyle = {borderBottom: '1px solid rgb(249, 177, 150)', margin: '1% 0 0 0'};
 const colStyle = {
-    marginTop: '-1%',paddingTop:'2%',borderRight:'1px solid rgb(249, 177, 150)',cursor:'pointer',background:'#FAC1AB',
-    ":hover":{
-        color:'blueviolet'
+    marginTop: '-1%',
+    paddingTop: '2%',
+    borderRight: '1px solid rgb(249, 177, 150)',
+    cursor: 'pointer',
+    background: '#FAC1AB',
+    ":hover": {
+        color: 'blueviolet'
     }
 };
 
@@ -21,7 +26,7 @@ class App extends Component {
         complete: false
     };
 
-    componentDidMount(){
+    componentDidMount() {
         this.pending();
     }
 
@@ -29,13 +34,13 @@ class App extends Component {
 
         let showOrders = null;
 
-        if(this.state.complete){
+        if (this.state.complete) {
             showOrders = <CompleteOrders/>
         }
-        if(this.state.pending){
+        if (this.state.pending) {
             showOrders = <PendingOrders/>
         }
-        if(this.state.ongoing){
+        if (this.state.ongoing) {
             showOrders = <OngoingOrders/>
         }
 
@@ -56,8 +61,7 @@ class App extends Component {
                 </div>
                 <div className={classes.Scroll}>
 
-                        {showOrders}
-
+                    {showOrders}
 
                 </div>
             </div>
@@ -66,8 +70,8 @@ class App extends Component {
 
     pending = () => {
         this.clear();
-        document.getElementById("pending").style.background="wheat";
-        document.getElementById("pending").style.borderRadius="6px 0px 0px 0px";
+        document.getElementById("pending").style.background = "wheat";
+        document.getElementById("pending").style.borderRadius = "6px 0px 0px 0px";
 
         this.setState({
             pending: true,
@@ -78,7 +82,7 @@ class App extends Component {
 
     ongoing = () => {
         this.clear();
-        document.getElementById("ongoing").style.background="wheat";
+        document.getElementById("ongoing").style.background = "wheat";
 
         this.setState({
             pending: false,
@@ -89,8 +93,8 @@ class App extends Component {
 
     complete = () => {
         this.clear();
-        document.getElementById("complete").style.background="wheat";
-        document.getElementById("complete").style.borderRadius="0px 6px 0px 0px";
+        document.getElementById("complete").style.background = "wheat";
+        document.getElementById("complete").style.borderRadius = "0px 6px 0px 0px";
 
         this.setState({
             pending: false,
@@ -100,16 +104,16 @@ class App extends Component {
     };
 
     clear = () => {
-        document.getElementById("pending").style.background="#FAC1AB";
-        document.getElementById("pending").style.borderRadius="6px 0px 0px 0px";
-        document.getElementById("pending").style.borderRight="1px solid rgb(249, 177, 150)";
+        document.getElementById("pending").style.background = "#FAC1AB";
+        document.getElementById("pending").style.borderRadius = "6px 0px 0px 0px";
+        document.getElementById("pending").style.borderRight = "1px solid rgb(249, 177, 150)";
 
-        document.getElementById("ongoing").style.background="#FAC1AB";
-        document.getElementById("ongoing").style.borderRight="1px solid rgb(249, 177, 150)";
+        document.getElementById("ongoing").style.background = "#FAC1AB";
+        document.getElementById("ongoing").style.borderRight = "1px solid rgb(249, 177, 150)";
 
-        document.getElementById("complete").style.background="#FAC1AB";
-        document.getElementById("complete").style.borderRadius="0px 6px 0px 0px";
-        document.getElementById("complete").style.borderRight="1px solid rgb(249, 177, 150)";
+        document.getElementById("complete").style.background = "#FAC1AB";
+        document.getElementById("complete").style.borderRadius = "0px 6px 0px 0px";
+        document.getElementById("complete").style.borderRight = "1px solid rgb(249, 177, 150)";
     };
 
 
@@ -117,15 +121,13 @@ class App extends Component {
 
 const orderStyle = {
     marginTop: '1%',
-    // height: '300px',
-    // background: 'rgb(255, 249, 245)',
-    background:'white',
+    background: 'white',
     border: '1px solid rgb(249, 177, 150)',
     borderRadius: '6px'
 };
 
 const pStyle = {
     textAlign: 'center', fontSize: '13px'
-}
+};
 
-export default Radium(App);
+export default Radium(withRouter(App));

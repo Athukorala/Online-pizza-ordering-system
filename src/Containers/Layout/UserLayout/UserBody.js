@@ -7,9 +7,19 @@ import HeadFooterCard from "../../../Components/Common/Cards/HeadFooterCard/Head
 import NormalCard from "../../../Components/Common/Cards/NormalCard/NormalCard";
 import Button from "../../../Components/Common/Button/Button";
 import FontAwesome from "../../../Components/Common/FontAwesome/FontAwesome";
-import OrderLayout from "./OrderLayout/OrderLayout";
 import Cookies from "js-cookie";
 import * as axiosPublic from '../../../axios/axios-public';
+import {NavLink, Route, Switch, withRouter} from "react-router-dom";
+import asyncComponent from "../../../hoc/asyncComponent/asyncComponent";
+// import CreateOrder from "./CreateOrder/CreateOrder";
+
+const userhome = asyncComponent(() => {
+    return import ('./UserHome/UserHome');
+});
+const createorder = asyncComponent(() => {
+    return import ('./CreateOrder/CreateOrder');
+});
+
 
 const mainDivStyle = {
     padding: '6% 2% 0%',
@@ -47,56 +57,16 @@ class App extends Component {
                 console.log(error);
             })
     }
+
     stopLoading = () => {
         this.props.stopLoadHandler();
     };
 
+    createOrderFunc = () => {
+        this.props.history.push('/createorder');
+    };
+
     render() {
-
-        let insta = null;
-        let fb = null;
-        let twitter = null;
-
-        if (this.props.regInstagram === null || this.props.regInstagram === "") {
-
-        } else {
-            insta = <div className="col-sm-4">
-                <a style={aStyle} href={"https://www.instagram.com/" + this.props.regInstagram} target="_blank">
-                    <small key="1" style={pStyle}><i style={{fontSize: '15px'}} className="fa fa-instagram fa-2x"
-                                                     aria-hidden="true"/>&nbsp;&nbsp;{this.props.regInstagram}</small>
-                </a>
-
-            </div>
-        }
-        if (this.props.regFb === null || this.props.regFb === "") {
-
-        } else {
-            fb = <div className="col-sm-4">
-                <a style={aStyle} href={"https://www.facebook.com/" + this.props.regFb} target="_blank">
-                    <small key="2" style={pStyle}><i style={{fontSize: '15px'}} className="fa fa-facebook fa-2x"
-                                                     aria-hidden="true"/>&nbsp;&nbsp;{this.props.regFb}</small>
-                </a>
-
-            </div>
-        }
-        if (this.props.regTwitter === null || this.props.regTwitter === "") {
-
-        } else {
-            twitter = <div className="col-sm-4">
-                <a style={aStyle} href={"https://www.twitter.com/" + this.props.regTwitter} target="_blank">
-                    <small key="3" style={pStyle}><i style={{fontSize: '15px'}} className="fa fa-twitter fa-2x"
-                                                     aria-hidden="true"/>&nbsp;&nbsp;{this.props.regTwitter}</small>
-                </a>
-
-            </div>
-        }
-
-        let social = <div className="row" style={{marginTop: '8%'}}>
-            {insta}
-            {fb}
-            {twitter}
-
-        </div>;
 
 
         return (
@@ -124,29 +94,19 @@ class App extends Component {
                         <br/>
                         <NormalCard header="Create an order">
                             <small>Contrary to popular belief, Lorem Ipsum is not simply random text.</small>
-                            <Button borderRadius="30px" fontSize="12px" marginTop="5%">CREATE</Button>
+
+                                <Button onClick={this.createOrderFunc} borderRadius="30px" fontSize="12px" marginTop="5%">CREATE</Button>
+
                         </NormalCard>
 
                     </div>
                     <div className="col-sm-9">
-
-                        {/*user pro pic and social media*/}
-
-                        <div className="row">
-                            <div className="col-sm-2">
-                                <img style={imageStyle} src={this.props.image} alt="userimage"/>
-                            </div>
-                            <div className="col-sm-8">
-
-                                {social}
-                            </div>
-
-                        </div>
-
-                        {/*order layout*/}
-
-                        <OrderLayout/>
-
+                        {/*user pro pic and social media and order layout*/}
+                        <Switch>
+                            <Route path="/createorder" component={createorder}/>
+                            <Route path="/" exact component={userhome}/>
+                            <Route component={userhome}/>
+                        </Switch>
 
                     </div>
                 </div>
@@ -157,22 +117,6 @@ class App extends Component {
     }
 }
 
-const imageStyle = {
-    width: '120px',
-    height: '110px',
-    objectFit: 'contain',
-    border: '1px solid gray',
-    padding: '2%',
-    borderRadius: '6px'
-};
-const pStyle = {
-    padding: '3% 18%', borderRadius: '10px', textAlign: 'center', border: '1px solid gray', cursor: 'pointer',
-    ":hover": {
-        border: '1px solid #f58573', color: '#f58573'
-    }
-};
-
-const aStyle = {outline: 'none', textDecoration: 'none', color: 'gray'};
 
 const mapStateToProps = (state) => {
 
@@ -215,4 +159,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Radium(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Radium(App)));

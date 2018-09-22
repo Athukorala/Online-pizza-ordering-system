@@ -8,7 +8,7 @@ import connect from "react-redux/es/connect/connect";
 import notFound from "../../../../../Content/Images/notFound.png";
 import * as axiosPublic from '../../../../../axios/axios-public';
 
-let value = 0;
+let value = -1;
 
 class App extends Component {
     componentDidMount() {
@@ -23,12 +23,14 @@ class App extends Component {
             if(users ===  "Can't load...Network Error!"){
                 value = -1;
                 return <ImageNormalCard
+                    validation={false}
                     imgId={index} key={index}
                     image={notFound}
                     title="Can't load...Network Error!"/>
             }else{
                 value = index;
                 return <ImageNormalCard
+                    validation={true}
                     userObj={users}
                     imgId={index} key={index}
                     title={users.name}

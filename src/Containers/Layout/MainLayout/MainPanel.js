@@ -9,6 +9,7 @@ import Login from "./LoginForm/Login";
 import RegistrationPasswordDetails from "./RegisterPanel/RegistrationPasswordDetails";
 import RegistrationSocialMediaDetails from "./RegisterPanel/RegistrationSocialMediaDetails";
 import * as actionCreator from "../../../store/action";
+import {withRouter} from "react-router-dom";
 
 class App extends Component {
 
@@ -61,4 +62,4 @@ const mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps, null)(App);
+export default withRouter(connect(mapStateToProps, null)(App));

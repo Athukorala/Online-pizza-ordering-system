@@ -14,7 +14,7 @@ const manage = {
         // color: 'rgb(249, 177, 150)'
         border:'1px solid rgb(249, 177, 150)'
     }
-}
+};
 
 const mainDivStyle = {
     padding: '6% 2% 0%',
